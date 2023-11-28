@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "geodjango_app_vm.geodjango_app_vm",
+    "geodjango_app_vm.auth_app_vm",
     # "debug_toolbar",    
 ]
 
