@@ -41,8 +41,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "auth_app_vm",
-    # "debug_toolbar",    
+    "rest_framework",
+    #"auth_app_vm",
+    #"rest_framework.authtoken",
+    #"rest_auth",
+    #"corsheaders",
+    "debug_toolbar",
 ]
 
 MIDDLEWARE = [
@@ -53,14 +57,20 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    # "debug_toolbar.middleware.DebugToolbarMiddleware",
+    #"corsheaders.middleware.CorsMiddleware"
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
-DEBUG_TOOLBAR_PATCH_SETTINGS = False
+# DEBUG_TOOLBAR_PATCH_SETTINGS = False
 
 INTERNAL_IPS = [
-    '127.0.0.1:8000',
+    '127.0.0.1',
     #'192.168.0.1'
+]
+
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000',  # Assuming your frontend runs on localhost:3000
+    # ... (other allowed origins)
 ]
 
 ROOT_URLCONF = "geodjango_app_vm.urls"
@@ -117,6 +127,16 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
+
+
+# settings.py
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    # ... (other DRF settings as needed)
+}
 
 
 # Internationalization
