@@ -8,3 +8,4 @@ class User_additional(models.Model):
     job_title = models.CharField(max_length=255, null=True, blank=True)
     department = models.CharField(max_length=255, null=True, blank=True)
     phone_number = models.CharField(max_length=100, null=True, blank=True)
+

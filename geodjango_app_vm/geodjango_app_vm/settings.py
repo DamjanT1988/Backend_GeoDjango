@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
+    "auth_app_vm",
     "rest_framework",
     #"auth_app_vm",
     #"rest_framework.authtoken",
@@ -57,6 +59,10 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     #"corsheaders.middleware.CorsMiddleware"
     "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
@@ -142,7 +148,9 @@ REST_FRAMEWORK = {
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "sv-se"
+
+USE_I18N = True
 
 TIME_ZONE = "UTC"
 
