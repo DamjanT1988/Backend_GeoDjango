@@ -45,7 +45,15 @@ SIMPLE_JWT = {
     # ... other JWT settings ...
 }
 
-
+# inte säkert om det behövs för utlogg
+"""
+DEFAULT_AUTHENTICATION_CLASSES = {
+    'rest_framework.authentication.TokenAuthentication',
+    'rest_framework.authentication.SessionAuthentication',
+    'jwt_auth.authentication.JWTAuthentication',
+    'JWTAuthentication',
+}
+"""
 
 # Application definition
 
@@ -94,6 +102,8 @@ CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',  # Assuming your frontend runs on localhost:3000
     # ... (other allowed origins)
 ]
+
+
 
 ROOT_URLCONF = "geodjango_app_vm.urls"
 

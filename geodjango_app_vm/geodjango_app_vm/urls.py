@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import include, path
 from geodjango_app_vm.views import home
-from auth_app_vm.views import CreateUserView, LoginView
+from auth_app_vm.views import CreateUserView, LoginView, LogoutView
 import debug_toolbar
 
 urlpatterns = [
@@ -9,6 +9,7 @@ urlpatterns = [
     path('', home, name='home'), 
     path('api/users/create', CreateUserView.as_view(), name='create_user'),
     path('api/token/', LoginView.as_view(), name='token_obtain_pair'),
+    path('api/logout/', LogoutView.as_view(), name='logout'),
 ]
 
 urlpatterns += [
