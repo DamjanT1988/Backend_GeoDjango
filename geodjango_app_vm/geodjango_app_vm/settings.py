@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,8 +29,22 @@ DEBUG = True
 GDAL_LIBRARY_PATH = 'C:\\OSGeo4W\\bin\\gdal308.dll'  # Update the path and file name as per your GDAL installation
 GEOS_LIBRARY_PATH = 'C:\\OSGeo4W\\bin\\geos_c.dll'  # Update the path and file name as per your GEOS installation
 
-
 ALLOWED_HOSTS = []
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    # ... (other DRF settings as needed)
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    # ... other JWT settings ...
+}
+
 
 
 # Application definition
@@ -41,7 +56,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
+    #
     "auth_app_vm",
     "rest_framework",
     #"auth_app_vm",
@@ -49,6 +64,7 @@ INSTALLED_APPS = [
     #"rest_auth",
     #"corsheaders",
     "debug_toolbar",
+    "rest_framework_simplejwt.token_blacklist",
 ]
 
 MIDDLEWARE = [
@@ -59,7 +75,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    
+    #
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -133,16 +149,6 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
-
-
-# settings.py
-
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
-    ],
-    # ... (other DRF settings as needed)
-}
 
 
 # Internationalization
