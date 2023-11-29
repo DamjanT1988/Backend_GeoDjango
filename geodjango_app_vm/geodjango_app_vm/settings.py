@@ -168,7 +168,7 @@ LANGUAGE_CODE = "sv-se"
 
 USE_I18N = True
 
-TIME_ZONE = "UTC"
+TIME_ZONE = 'Europe/Stockholm'
 
 USE_I18N = True
 

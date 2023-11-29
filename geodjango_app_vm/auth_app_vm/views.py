@@ -1,14 +1,12 @@
-# views.py
 from django.contrib.auth.models import User
+from django.utils import timezone
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated
-from rest_framework_simplejwt.token_blacklist.models import BlacklistedToken
-from .serializers import UserCreationSerializer
+from auth_app_vm.serializers import UserCreationSerializer
 from django.contrib.auth import authenticate
-
 
 class CreateUserView(APIView):
     def post(self, request):
@@ -25,13 +23,18 @@ class LoginView(APIView):
         user = authenticate(username=username, password=password)
 
         if user:
+            # Update last login time
+            user.last_login = timezone.now()
+            user.save(update_fields=['last_login'])
+
+            # Create token
             refresh = RefreshToken.for_user(user)
             return Response({
                 'refresh': str(refresh),
                 'access': str(refresh.access_token),
             })
         return Response({'error': 'Invalid Credentials'}, status=status.HTTP_401_UNAUTHORIZED)
-    
+
 class LogoutView(APIView):
     permission_classes = [IsAuthenticated]
 
