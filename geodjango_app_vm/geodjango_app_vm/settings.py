@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     #
+    "species_app_vm",
     "auth_app_vm",
     "rest_framework",
     #"auth_app_vm",

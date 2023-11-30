@@ -8,7 +8,7 @@ admin.site.register(User_additional)
 from django.contrib import admin
 from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
-from .models import User_additional, Audit_log
+from auth_app_vm.models import User_additional, Audit_log
 
 class UserAdditionalInline(admin.StackedInline):
     model = User_additional
