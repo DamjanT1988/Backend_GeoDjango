@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.contrib.auth.models import User
 from django.utils import timezone
 from rest_framework import generics, permissions, status, views, response
@@ -8,8 +9,26 @@ from rest_framework.permissions import IsAuthenticated
 from auth_app_vm.serializers import UserCreationSerializer
 from django.contrib.auth import authenticate
 
+"""
+# Allow in production
+def check_request_origin(request):
+    allowed_domain = 'https://www.yourwebappdomain.com'
+    origin = request.META.get('HTTP_ORIGIN')
+    referer = request.META.get('HTTP_REFERER')
+
+    if origin and origin == allowed_domain:
+        return True
+    elif referer and referer.startswith(allowed_domain):
+        return True
+    else:
+        return False
+"""
+        
 class CreateUserView(APIView):
     def post(self, request):
+        # Allow in production
+        #if not check_request_origin(request):
+        #    return JsonResponse({'error': 'Invalid origin'}, status=403)
         serializer = UserCreationSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
