@@ -8,6 +8,18 @@ class User_additional(models.Model):
     job_title = models.CharField("Jobbtitel:", max_length=255, null=True, blank=True)
     department = models.CharField("Avdelning:", max_length=255, null=True, blank=True)
     phone_number = models.CharField("Telefonnummer:", max_length=100, null=True, blank=True)
+    active_account = models.BooleanField("Aktivt konto:", default=True)
+    Payment_latest_invoice = models.BooleanField("Betalat senaste faktura:", default=False)
+    payment_date = models.DateField("Senaste betalningsdatum:", null=True, blank=True)
+    payment_price = models.FloatField("Pris per månad:", null=True, blank=True)
+    payment_invoice_number = models.CharField("Nuvarande fakturanummer:", max_length=255, null=True, blank=True)
+    payment_invoice_date = models.DateField("Nuvarande fakturadatum:", null=True, blank=True)
+    payment_invoice_due_date = models.DateField("Nuvarande förfallodatum:", null=True, blank=True)
+    payment_email = models.CharField("Faktura e-postadress:", max_length=255, null=True, blank=True)
+    payment_adress = models.CharField("Faktura adress:", max_length=255, null=True, blank=True)
+    payment_telephone = models.CharField("Faktura telefonnummer:", max_length=255, null=True, blank=True)
+    payment_reference = models.CharField("Deras referens:", max_length=255, null=True, blank=True)
+    payment_comment = models.TextField("Kommentar om kund:", null=True, blank=True)
 
     class Meta:
             verbose_name = "Ytterligare användarinformation"
