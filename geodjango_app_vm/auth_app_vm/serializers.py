@@ -1,6 +1,8 @@
+# auth_app_vm/serializers.py
+
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import User_additional  # Ensure this import is correct based on your project structure
+from .models import User_additional
 
 class UserAdditionalSerializer(serializers.ModelSerializer):
     class Meta:
@@ -17,12 +19,7 @@ class UserCreationSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         user_additional_data = validated_data.pop('user_additional', None)
-        user = User.objects.create_user(
-            username=validated_data['username'],
-            email=validated_data['email'],
-            first_name=validated_data.get('first_name', ''),  # Get first_name
-            last_name=validated_data.get('last_name', '')    # Get last_name
-        )
+        user = User.objects.create_user(**validated_data)
         user.set_password(validated_data['password'])
         user.save()
 
@@ -30,3 +27,20 @@ class UserCreationSerializer(serializers.ModelSerializer):
             User_additional.objects.create(user=user, **user_additional_data)
 
         return user
+
+    def update(self, instance, validated_data):
+        user_additional_data = validated_data.pop('user_additional', None)
+        user_additional_instance = getattr(instance, 'user_additional', None)
+
+        instance = super(UserCreationSerializer, self).update(instance, validated_data)
+
+        if user_additional_data is not None:
+            # Update or create the User_additional instance
+            if user_additional_instance:
+                for attr, value in user_additional_data.items():
+                    setattr(user_additional_instance, attr, value)
+                user_additional_instance.save()
+            else:
+                User_additional.objects.create(user=instance, **user_additional_data)
+
+        return instance
