@@ -34,7 +34,12 @@ ALLOWED_HOSTS = []
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
+        #'rest_framework.authentication.TokenAuthentication',
+        #'rest_framework.authentication.SessionAuthentication',
+        #'jwt_auth.authentication.JWTAuthentication',
+        #'JWTAuthentication',
         'rest_framework.authentication.TokenAuthentication',
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     ],
     # ... (other DRF settings as needed)
 }
@@ -44,17 +49,6 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     # ... other JWT settings ...
 }
-
-# inte säkert om det behövs för utlogg
-
-DEFAULT_AUTHENTICATION_CLASSES = {
-    #'rest_framework.authentication.TokenAuthentication',
-    #'rest_framework.authentication.SessionAuthentication',
-    #'jwt_auth.authentication.JWTAuthentication',
-    #'JWTAuthentication',
-    "rest_framework_simplejwt.authentication.JWTAuthentication",
-}
-
 
 # Application definition
 
@@ -69,13 +63,12 @@ INSTALLED_APPS = [
     "API_REST_app_vm",
     "species_app_vm",
     "auth_app_vm",
-    "rest_framework",
-    #"auth_app_vm",
-    #"rest_framework.authtoken",
     #"rest_auth",
     #"corsheaders",
     "debug_toolbar",
     "rest_framework_simplejwt.token_blacklist",
+    "rest_framework",
+    #"rest_framework.authtoken",
 ]
 
 MIDDLEWARE = [

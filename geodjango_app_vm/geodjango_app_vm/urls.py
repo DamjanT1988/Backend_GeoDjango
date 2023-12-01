@@ -12,7 +12,7 @@ urlpatterns = [
     path('api/login/', LoginView.as_view(), name='token_obtain_pair'),
     path('api/logout/', LogoutView.as_view(), name='logout'),
     path('api/species/central', SpeciesCentralDatabankList.as_view(), name='species-list'),
-    path('api/species/user', SpeciesUserDatabankList.as_view(), name='species-list'),
+    path('api/species/user/<int:user_id>/', SpeciesUserDatabankList.as_view(), name='species-list'),
 ]
 
 urlpatterns += [
