@@ -13,7 +13,8 @@ def fetch_and_save_species_data(api_url):
         data = response.json()  # This is a list of JSON objects
         for item in data:
             SpeciesCentralDatabank.objects.create(
-                #LÄGG TILL FLER FÄLT - taxonID
+                taxon_id=item.get('taxonId', None),  # Example field
+                latin_name=item.get('scientificName', 'Unknown'),  # Example field
                 species_name_common=item.get('swedishName', 'Unknown'),  # Example field
                 species_data=item,  # Storing the entire JSON object
                 source=api_url  # Example source field

@@ -46,14 +46,15 @@ SIMPLE_JWT = {
 }
 
 # inte säkert om det behövs för utlogg
-"""
+
 DEFAULT_AUTHENTICATION_CLASSES = {
-    'rest_framework.authentication.TokenAuthentication',
-    'rest_framework.authentication.SessionAuthentication',
-    'jwt_auth.authentication.JWTAuthentication',
-    'JWTAuthentication',
+    #'rest_framework.authentication.TokenAuthentication',
+    #'rest_framework.authentication.SessionAuthentication',
+    #'jwt_auth.authentication.JWTAuthentication',
+    #'JWTAuthentication',
+    "rest_framework_simplejwt.authentication.JWTAuthentication",
 }
-"""
+
 
 # Application definition
 
@@ -65,6 +66,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     #
+    "API_REST_app_vm",
     "species_app_vm",
     "auth_app_vm",
     "rest_framework",
