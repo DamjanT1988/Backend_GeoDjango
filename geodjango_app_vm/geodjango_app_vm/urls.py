@@ -5,6 +5,7 @@ from species_app_vm.views import SpeciesCentralDatabankList, SpeciesUserDatabank
 from auth_app_vm.views import CreateUserView, UserRetrieveUpdateView, LoginView, LogoutView
 from project_app_vm.views import ProjectListCreateView, ProjectDetailView
 from report_app_vm.views import ReportList, ReportDetail
+from transfer_app_vm.views import ProjectTransferView
 
 import debug_toolbar
 
@@ -21,6 +22,7 @@ urlpatterns = [
     path('api/projects/<int:pk>/', ProjectDetailView.as_view(), name='project-detail'),
     path('api/reports/', ReportList.as_view(), name='report-list'),
     path('api/reports/<int:pk>/', ReportDetail.as_view(), name='report-detail'),
+    path('api/transfer/<int:pk>/', ProjectTransferView.as_view(), name='transfer-project'),
 ]
 
 urlpatterns += [
