@@ -3,6 +3,7 @@ from django.urls import include, path
 from geodjango_app_vm.views import home
 from API_REST_app_vm.views import SpeciesCentralDatabankList, SpeciesUserDatabankList
 from auth_app_vm.views import CreateUserView, UserRetrieveUpdateView, LoginView, LogoutView
+from project_app_vm.views import ProjectListCreateView, ProjectDetailView
 import debug_toolbar
 
 urlpatterns = [
@@ -14,6 +15,8 @@ urlpatterns = [
     path('api/user/info/', UserRetrieveUpdateView.as_view(), name='user-info'), #GET and PUT user info, user ID by JWT
     path('api/species/', SpeciesCentralDatabankList.as_view(), name='species-list'), #get all central species
     path('api/species/user/', SpeciesUserDatabankList.as_view(), name='species-list'), #get user db species
+    path('api/projects/', ProjectListCreateView.as_view(), name='project-list'),
+    path('api/projects/<int:pk>/', ProjectDetailView.as_view(), name='project-detail'),
     #path('api/project/get/<int:project_id>/', .as_view(), name='get-project'), #get project info
     #path('api/project/post/<int:project_id>/', .as_view(), name='post-project'), #add project info
     #path('api/project/update/<int:project_id>/', .as_view(), name='update-project'), #update project info
