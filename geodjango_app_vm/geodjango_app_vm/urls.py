@@ -20,9 +20,10 @@ urlpatterns = [
     path('api/species/user/', SpeciesUserDatabankList.as_view(), name='species-list'), #get user db species
     path('api/projects/', ProjectListCreateView.as_view(), name='project-list'),
     path('api/projects/<int:pk>/', ProjectDetailView.as_view(), name='project-detail'),
-    path('api/reports/', ReportList.as_view(), name='report-list'),
+    path('api/reports/', ReportList.as_view(), name='report-list'), #GET all reports, POST a new report
     path('api/reports/<int:pk>/', ReportDetail.as_view(), name='report-detail'),
-    path('api/transfer/<int:pk>/', ProjectTransferView.as_view(), name='transfer-project'),
+    path('api/transfer/<int:pk>/', ProjectTransferView.as_view(), name='transfer-project'), # GET a project, PUT a project
+    #path('api/transfer/create/', ProjectTransferView.as_view(), name='transfer-project-create'), # POST a new project
 ]
 
 urlpatterns += [
