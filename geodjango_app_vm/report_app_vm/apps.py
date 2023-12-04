@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class ApiRestAppVmConfig(AppConfig):
+class ReportAppVmConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
-    name = "API_REST_app_vm"
+    name = "report_app_vm"

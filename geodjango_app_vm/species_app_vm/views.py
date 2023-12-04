@@ -1,6 +1,6 @@
 from rest_framework import generics
 from species_app_vm.models import SpeciesCentralDatabank, SpeciesUserDatabank
-from API_REST_app_vm.serializers import SpeciesCentralDatabankSerializer, SpeciesUserDatabankSerializer
+from species_app_vm.serializers import SpeciesCentralDatabankSerializer, SpeciesUserDatabankSerializer
 from rest_framework.permissions import IsAuthenticated
 
 class SpeciesCentralDatabankList(generics.ListAPIView):

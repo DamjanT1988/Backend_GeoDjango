@@ -49,16 +49,17 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     #
-    "API_REST_app_vm",
     "species_app_vm",
     "auth_app_vm",
     "project_app_vm",
+    "report_app_vm",
     "rest_framework_gis",
-    #"rest_auth",
-    #"corsheaders",
-    "debug_toolbar",
     "rest_framework_simplejwt.token_blacklist",
     "rest_framework",
+    "debug_toolbar",
+    #"API_REST_app_vm",
+    #"rest_auth",
+    #"corsheaders",
     #"rest_framework.authtoken",
 ]
 

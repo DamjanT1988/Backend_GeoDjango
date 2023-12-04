@@ -1,9 +1,11 @@
 from django.contrib import admin
 from django.urls import include, path
 from geodjango_app_vm.views import home
-from API_REST_app_vm.views import SpeciesCentralDatabankList, SpeciesUserDatabankList
+from species_app_vm.views import SpeciesCentralDatabankList, SpeciesUserDatabankList
 from auth_app_vm.views import CreateUserView, UserRetrieveUpdateView, LoginView, LogoutView
 from project_app_vm.views import ProjectListCreateView, ProjectDetailView
+from report_app_vm.views import ReportList, ReportDetail
+
 import debug_toolbar
 
 urlpatterns = [
@@ -17,6 +19,8 @@ urlpatterns = [
     path('api/species/user/', SpeciesUserDatabankList.as_view(), name='species-list'), #get user db species
     path('api/projects/', ProjectListCreateView.as_view(), name='project-list'),
     path('api/projects/<int:pk>/', ProjectDetailView.as_view(), name='project-detail'),
+    path('api/reports/', ReportList.as_view(), name='report-list'),
+    path('api/reports/<int:pk>/', ReportDetail.as_view(), name='report-detail'),
 ]
 
 urlpatterns += [
