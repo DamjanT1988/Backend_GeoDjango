@@ -29,10 +29,13 @@ class GISData(models.Model):
 
 class PolygonData(GISData):
     geo_data = gis_models.PolygonField()
+    project = models.ForeignKey(Project, related_name='polygon_data', on_delete=models.CASCADE)
 
 class LineData(GISData):
     geo_data = gis_models.LineStringField()
+    project = models.ForeignKey(Project, related_name='line_data', on_delete=models.CASCADE)
 
 class PointData(GISData):
     geo_data = gis_models.PointField()
     attributes = gis_models.JSONField()  # Specific to PointData
+    project = models.ForeignKey(Project, related_name='point_data', on_delete=models.CASCADE)
