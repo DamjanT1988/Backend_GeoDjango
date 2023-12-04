@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     "API_REST_app_vm",
     "species_app_vm",
     "auth_app_vm",
+    "project_app_vm",
+    "rest_framework_gis",
     #"rest_auth",
     #"corsheaders",
     "debug_toolbar",

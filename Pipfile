@@ -11,6 +11,7 @@ django-cors-headers = "*"
 djangorestframework-simplejwt = "*"
 setuptools = "*"
 requests = "*"
+djangorestframework-gis = "*"
 
 [dev-packages]
 

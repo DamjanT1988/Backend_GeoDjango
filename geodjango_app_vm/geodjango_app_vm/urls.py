@@ -17,12 +17,6 @@ urlpatterns = [
     path('api/species/user/', SpeciesUserDatabankList.as_view(), name='species-list'), #get user db species
     path('api/projects/', ProjectListCreateView.as_view(), name='project-list'),
     path('api/projects/<int:pk>/', ProjectDetailView.as_view(), name='project-detail'),
-    #path('api/project/get/<int:project_id>/', .as_view(), name='get-project'), #get project info
-    #path('api/project/post/<int:project_id>/', .as_view(), name='post-project'), #add project info
-    #path('api/project/update/<int:project_id>/', .as_view(), name='update-project'), #update project info
-    #path('api/project/delete/<int:project_id>/', .as_view(), name='delete-project'), #delete project
-    #path('api/transfer/mobile<int:project_id>/', .as_view(), name='transfer-mobile'), #transfer to mobile
-    #path('api/transfer/web<int:project_id>/', .as_view(), name='transfer-web'), #transfer to web
 ]
 
 urlpatterns += [
