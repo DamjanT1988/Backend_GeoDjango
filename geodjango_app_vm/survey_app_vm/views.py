@@ -8,6 +8,31 @@ from survey_app_vm.serializers import *
 class DynamicListView(generics.ListCreateAPIView):
     def get_queryset(self):
         model_name = self.kwargs['model_name']
+        try:
+            model = apps.get_model('survey_app_vm', model_name)
+        except LookupError:
+            raise ValueError(f"Model '{model_name}' not found.")
+        return model.objects.all()
+
+    def get_serializer_class(self):
+        model_name = self.kwargs['model_name']
+        serializer_class_name = model_name + 'Serializer'
+        try:
+            return globals()[serializer_class_name]
+        except KeyError:
+            raise ValueError(f"Serializer for model '{model_name}' not found.")
+
+    def list(self, request, *args, **kwargs):
+        try:
+            return super(DynamicListView, self).list(request, *args, **kwargs)
+        except ValueError as e:
+            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+
+"""
+class DynamicListView(generics.ListCreateAPIView):
+    def get_queryset(self):
+        model_name = self.kwargs['model_name']
         model = apps.get_model('survey_app_vm', model_name)
         return model.objects.all()
 
@@ -21,7 +46,7 @@ class DynamicListView(generics.ListCreateAPIView):
         if not model_name in globals():
             return Response({'error': 'Invalid model name'}, status=status.HTTP_404_NOT_FOUND)
         return super(DynamicListView, self).list(request, *args, **kwargs)
-
+"""
 
 class AggregatedDataViewOther(APIView):
     def get(self, request, format=None):
