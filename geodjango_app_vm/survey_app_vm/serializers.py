@@ -137,11 +137,106 @@ class SotvattenSerializer(serializers.ModelSerializer):
         model = Sotvatten
         fields = '__all__'
 
+class GrasmarkSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Grasmark
+        fields = '__all__'
 
+class MyrerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Myrer
+        fields = '__all__'
 
+class Berg_substratmarkSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Berg_substratmark
+        fields = '__all__'
 
+class SkogSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Skog
+        fields = '__all__'
 
+class Ovrigt_2Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Ovrigt_2
+        fields = '__all__'
 
+class Ovrigt_forstudierSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Ovrigt_forstudier
+        fields = '__all__'
+
+class Values_hydroSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Values_hydro
+        fields = '__all__'
+
+class Values_livsmiljoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Values_livsmiljo
+        fields = '__all__'
+
+class Values_kvant_artforekomstSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Values_kvant_artforekomst
+        fields = '__all__'
+
+class Values_kartlaggningstypSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Values_kartlaggningstyp
+        fields = '__all__'
+
+class Values_naturvardesklassSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Values_naturvardesklass
+        fields = '__all__'
+
+### NATURE - MARK ###
+class Ecosystem_category_mark_natSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Ecosystem_category_mark_nat
+        fields = '__all__'
+
+class KalfjallSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Kalfjall
+        fields = '__all__'
+
+class Berg_och_stenSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Berg_och_sten
+        fields = '__all__'
+
+class Naturligt_bar_jordSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Naturligt_bar_jord
+        fields = '__all__'
+
+class Naturlig_grasmarkSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Naturlig_grasmark
+        fields = '__all__'
+
+class Skog_buskmarkSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Skog_buskmark
+        fields = '__all__'
+
+class Myr_markSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Myr_mark
+        fields = '__all__'
+
+class Ecosystem_category_mark_antSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Ecosystem_category_mark_ant
+        fields = '__all__'
+
+class Values_mark_antSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Values_mark_ant
+        fields = '__all__'
 
 
 
@@ -287,6 +382,9 @@ class SotvattenSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sotvatten
         fields = '__all__'
+
+        
+###
 
 class GrasmarkSerializer(serializers.ModelSerializer):
     class Meta:
