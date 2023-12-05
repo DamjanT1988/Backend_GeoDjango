@@ -6,7 +6,7 @@ from auth_app_vm.views import CreateUserView, UserRetrieveUpdateView, LoginView,
 from project_app_vm.views import ProjectListCreateView, ProjectDetailView
 from report_app_vm.views import ReportList, ReportDetail
 from transfer_app_vm.views import ProjectTransferView
-
+from survey_app_vm.views import DynamicListView, AggregatedDataViewOther
 import debug_toolbar
 
 urlpatterns = [
@@ -22,8 +22,8 @@ urlpatterns = [
     path('api/projects/<int:pk>/', ProjectDetailView.as_view(), name='project-detail'),
     path('api/reports/', ReportList.as_view(), name='report-list'), #GET all reports, POST a new report
     path('api/reports/<int:pk>/', ReportDetail.as_view(), name='report-detail'),
-    #path('api/other/', OtherSurveyList.as_view(), name='other-survey-list'),
-    #path('api/nature-type/', NatureTypeSurveyList.as_view(), name='nature-type-survey-list'),
+    path('api/form/<str:model_name>/', DynamicListView.as_view(), name='dynamic-list'),
+    path('api/form/all/other/', AggregatedDataViewOther.as_view(), name='aggregate-data-other'),
     path('api/transfer/<int:pk>/', ProjectTransferView.as_view(), name='transfer-project'), # GET a project, PUT a project
     #path('api/transfer/create/', ProjectTransferView.as_view(), name='transfer-project-create'), # POST a new project
 ]

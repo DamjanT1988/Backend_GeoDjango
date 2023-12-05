@@ -1,13 +1,4 @@
-from .models_other import *  # Import all models from models_other.py
-
-class Group_naturvardesklass(models.Model):
-    group = models.CharField(max_length=255)
-
-    def __str__(self):
-        return self.group
-
-
-## Group_naturvardesklass ##
-class Values_kartlaggningstyp(SurveyItemBase):
-    color = models.CharField(max_length=255)
-    group_id = models.ForeignKey(Group_naturvardesklass, on_delete=models.CASCADE)
+from survey_app_vm.models_other import *  # Import all models from models_other.py
+from survey_app_vm.models_nature_mark import *
+from survey_app_vm.models_nature_sotvatten import *
+from survey_app_vm.models_nature_hav import *

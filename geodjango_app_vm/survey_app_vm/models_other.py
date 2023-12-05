@@ -142,7 +142,7 @@ class Skog(SurveyItemBase):
     nature_type_code = models.IntegerField()
     group_id = models.ForeignKey(Group_natura2000, on_delete=models.CASCADE)
 
-class Ovrigt(SurveyItemBase):
+class Ovrigt_2(SurveyItemBase):
     nature_type_code = models.IntegerField()
     group_id = models.ForeignKey(Group_natura2000, on_delete=models.CASCADE)
 
@@ -170,7 +170,7 @@ class Values_kartlaggningstyp(SurveyItemBase):
     group_id = models.ForeignKey(Group_kartlaggningstyp, on_delete=models.CASCADE)
 
 ## Group_naturvardesklass ##
-class Group_naturvardesklass(SurveyItemBase):
+class Values_naturvardesklass(SurveyItemBase):
     color = models.CharField(max_length=255)
     nature_value_class = models.CharField(max_length=255)
     group_id = models.ForeignKey(Group_naturvardesklass, on_delete=models.CASCADE)
