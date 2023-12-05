@@ -48,11 +48,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    #
+    #own apps
     "species_app_vm",
     "auth_app_vm",
     "project_app_vm",
     "report_app_vm",
+    "transfer_app_vm",
+    "survey_app_vm",
     "rest_framework_gis",
     "rest_framework_simplejwt.token_blacklist",
     "rest_framework",

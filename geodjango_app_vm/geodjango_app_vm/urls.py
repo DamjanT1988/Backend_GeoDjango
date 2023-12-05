@@ -22,6 +22,8 @@ urlpatterns = [
     path('api/projects/<int:pk>/', ProjectDetailView.as_view(), name='project-detail'),
     path('api/reports/', ReportList.as_view(), name='report-list'), #GET all reports, POST a new report
     path('api/reports/<int:pk>/', ReportDetail.as_view(), name='report-detail'),
+    #path('api/other/', OtherSurveyList.as_view(), name='other-survey-list'),
+    #path('api/nature-type/', NatureTypeSurveyList.as_view(), name='nature-type-survey-list'),
     path('api/transfer/<int:pk>/', ProjectTransferView.as_view(), name='transfer-project'), # GET a project, PUT a project
     #path('api/transfer/create/', ProjectTransferView.as_view(), name='transfer-project-create'), # POST a new project
 ]
