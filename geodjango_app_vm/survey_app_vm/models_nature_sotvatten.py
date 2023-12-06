@@ -45,35 +45,3 @@ class Values_sotv_ant(models.Model):
     specific_code = models.CharField(max_length=100, unique=True)
     biotopemark = models.CharField(max_length=255)
     description = models.TextField()
-
-"""
-class Vattendrag(models.Model):
-    category = models.ForeignKey(Ecosystem_category_sotv_ant, on_delete=models.CASCADE)
-    specific_code = models.CharField(max_length=100, unique=True)
-    biotopemark = models.CharField(max_length=255)
-    description = models.TextField()
-
-class Strand(models.Model):
-    category = models.ForeignKey(Ecosystem_category_sotv_ant, on_delete=models.CASCADE)
-    specific_code = models.CharField(max_length=100, unique=True)
-    biotopemark = models.CharField(max_length=255)
-    description = models.TextField()
-
-class Vatten(models.Model):
-    category = models.ForeignKey(Ecosystem_category_sotv_ant, on_delete=models.CASCADE)
-    specific_code = models.CharField(max_length=100, unique=True)
-    biotopemark = models.CharField(max_length=255)
-    description = models.TextField()
-
-class Frammande(models.Model):
-    category = models.ForeignKey(Ecosystem_category_sotv_ant, on_delete=models.CASCADE)
-    specific_code = models.CharField(max_length=100, unique=True)
-    biotopemark = models.CharField(max_length=255)
-    description = models.TextField()
-
-class Myr(models.Model):
-    category = models.ForeignKey(Ecosystem_category_sotv_ant, on_delete=models.CASCADE)
-    specific_code = models.CharField(max_length=100, unique=True)
-    biotopemark = models.CharField(max_length=255)
-    description = models.TextField()
-"""
