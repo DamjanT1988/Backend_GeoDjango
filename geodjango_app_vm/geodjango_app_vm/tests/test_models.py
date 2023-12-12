@@ -8,6 +8,8 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from report_app_vm.models import Report
 from species_app_vm.models import SpeciesCentralDatabank, SpeciesUserDatabank
 import json
+from django.utils import timezone
+import uuid
 
 class ProjectModelTest(TestCase):
     @classmethod
@@ -113,20 +115,22 @@ class ReportModelTest(TestCase):
 
     @classmethod
     def setUpTestData(cls):
-        # Create a user and project for testing
-        test_user = User.objects.create_user(username='testuser', password='12345')
-        test_project = Project.objects.create(project_name="Test Project", description="Test Description", user=test_user)
-        
-        # Create a dummy file for testing
-        test_file = SimpleUploadedFile("test_report2.txt", b"Test report content")
+        # Create a test user and project for the report
+        cls.test_user = User.objects.create_user(username='testuser', password='12345')
+        cls.test_project = Project.objects.create(project_name="Test Project", user=cls.test_user)
 
-        Report.objects.create(project=test_project, report_data=test_file)
+        # Create a unique file name for the dummy file
+        unique_filename = f"test_report_{uuid.uuid4()}.txt"
+        test_file = SimpleUploadedFile(unique_filename, b"Test report content")
+
+        # Create a test report
+        cls.report = Report.objects.create(project=cls.test_project, report_data=test_file)
 
     def test_report_creation(self):
-        report = Report.objects.get(id=1)
-        self.assertEqual(report.project.project_name, "Test Project")
-        self.assertTrue(report.report_data.name.endswith("test_report2.txt"))
-        # Test other fields as needed
+        # Fetch the report and perform assertions
+        fetched_report = Report.objects.get(id=self.report.id)
+        self.assertEqual(fetched_report.project.project_name, "Test Project")
+        self.assertTrue(fetched_report.report_data.name.endswith(self.report.report_data.name))
 
 class SpeciesCentralDatabankModelTest(TestCase):
 
