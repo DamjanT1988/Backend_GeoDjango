@@ -6,6 +6,7 @@ from auth_app_vm.models import User_additional, User_payment, Audit_log
 from datetime import date
 from django.core.files.uploadedfile import SimpleUploadedFile
 from report_app_vm.models import Report
+from survey_app_vm.models import *
 from species_app_vm.models import SpeciesCentralDatabank, SpeciesUserDatabank
 import json
 from django.utils import timezone

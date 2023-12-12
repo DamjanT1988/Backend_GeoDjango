@@ -1,4 +1,4 @@
-from django.test import SimpleTestCase
+from django.test import SimpleTestCase, TestCase
 from django.urls import reverse, resolve
 from geodjango_app_vm.views import home
 from species_app_vm.views import SpeciesCentralDatabankList, SpeciesUserDatabankList
@@ -7,6 +7,7 @@ from project_app_vm.views import ProjectListCreateView, ProjectDetailView
 from report_app_vm.views import ReportList, ReportDetail
 from transfer_app_vm.views import ProjectTransferView
 from survey_app_vm.views import DynamicListView, AggregatedDataViewAll, AggregatedDataViewOther, AggregatedDataViewMark, AggregatedDataViewSotvatten, AggregatedDataViewHav
+from survey_app_vm.models import *
 
 class TestUrls(SimpleTestCase):
 
@@ -89,3 +90,4 @@ class TestUrls(SimpleTestCase):
     def test_aggregated_data_view_hav_url_resolves(self):
         url = reverse('aggregate-data-hav')
         self.assertEqual(resolve(url).func.view_class, AggregatedDataViewHav)
+
