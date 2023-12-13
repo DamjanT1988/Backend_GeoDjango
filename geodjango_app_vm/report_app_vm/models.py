@@ -4,7 +4,7 @@ from django.db import models
 from project_app_vm.models import Project  # Adjust this import based on your project structure
 
 class Report(models.Model):
-    report_data = models.FileField(upload_to='reports/')
+    report_data = models.FileField(upload_to='project_reports/')
     generated_date = models.DateTimeField(auto_now_add=True)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
 

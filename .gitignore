@@ -1,6 +1,6 @@
 *.pyc
 __pycache__/
-#db.sqlite3
+/geodjango_app_vm/geodjango_app_vm/tests/test_reports
 #.env
 #/venv
 # /geodjango_app_vm/settings.py

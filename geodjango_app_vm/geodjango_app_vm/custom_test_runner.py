@@ -1,9 +1,10 @@
+import xmlrunner
 from django.test.runner import DiscoverRunner
 
 class CustomTestRunner(DiscoverRunner):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        # Set the directory where you want to save the reports
-        self.test_output_dir = 'geodjango_app_vm/tests/reports'
-
-    # Override any methods as needed to customize the test report handling
+    def run_suite(self, suite, **kwargs):
+        """
+        Run the test suite.
+        """
+        test_runner = xmlrunner.XMLTestRunner(output='geodjango_app_vm/tests/test_reports')
+        return test_runner.run(suite)
