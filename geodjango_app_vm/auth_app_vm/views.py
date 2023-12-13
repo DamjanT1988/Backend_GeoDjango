@@ -90,3 +90,26 @@ class UserPaymentCreateView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class UserDeleteView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request, user_id=None):
+        # Allow user to delete their own account, or allow admin to delete any account
+        user = request.user
+
+        # Optional: Check if the requesting user is trying to delete their own account or is an admin
+        if user.id != user_id and not user.is_superuser:
+            return Response({'error': 'You do not have permission to perform this action.'}, status=status.HTTP_403_FORBIDDEN)
+
+        try:
+            # If an admin is deleting another user, find that user
+            if user.is_superuser and user_id is not None:
+                user = User.objects.get(id=user_id)
+
+            user.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except User.DoesNotExist:
+            return Response({'error': 'User not found.'}, status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
