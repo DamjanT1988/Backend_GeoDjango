@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated
-from auth_app_vm.serializers import UserCreationSerializer
+from auth_app_vm.serializers import *
 from django.contrib.auth import authenticate
 
 """
@@ -83,3 +83,10 @@ class UserCreateView(generics.CreateAPIView):
     serializer_class = UserCreationSerializer
     permission_classes = [permissions.AllowAny]  # Or [permissions.IsAuthenticated] based on your requirements
 
+class UserPaymentCreateView(APIView):
+    def post(self, request):
+        serializer = UserPaymentSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

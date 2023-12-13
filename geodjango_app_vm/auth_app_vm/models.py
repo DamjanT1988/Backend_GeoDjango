@@ -14,7 +14,7 @@ class User_additional(models.Model):
             verbose_name_plural = "Ytterligare användarinformation"
 
 class User_payment(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='payments')
     active_account = models.BooleanField("Aktiverat konto:", default=True)
     Payment_latest_invoice = models.BooleanField("Betalat senaste faktura:", default=False)
     payment_date = models.DateField("Senaste betalningsdatum:", null=True, blank=True)

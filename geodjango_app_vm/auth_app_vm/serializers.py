@@ -2,7 +2,7 @@
 
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import User_additional
+from auth_app_vm.models import *
 
 class UserAdditionalSerializer(serializers.ModelSerializer):
     class Meta:
@@ -44,3 +44,11 @@ class UserCreationSerializer(serializers.ModelSerializer):
                 User_additional.objects.create(user=instance, **user_additional_data)
 
         return instance
+
+class UserPaymentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User_payment
+        fields = ['user', 'active_account', 'Payment_latest_invoice', 'payment_date', 
+                  'payment_price', 'payment_invoice_number', 'payment_invoice_date', 
+                  'payment_invoice_due_date', 'payment_email', 'payment_adress', 
+                  'payment_telephone', 'payment_reference', 'payment_comment']
