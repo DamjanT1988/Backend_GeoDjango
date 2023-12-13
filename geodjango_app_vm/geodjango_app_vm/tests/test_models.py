@@ -175,3 +175,4 @@ class SpeciesUserDatabankModelTest(TestCase):
         self.assertEqual(user_species.species_data, "User test data")
         self.assertEqual(user_species.source, "User Source")
         self.assertEqual(user_species.user.username, 'testuser')
+

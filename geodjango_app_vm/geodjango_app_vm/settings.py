@@ -21,6 +21,9 @@ ALLOWED_HOSTS = []
 
 APPEND_SLASH=False 
 
+TEST_RUNNER = 'geodjango_app_vm.custom_test_runner.CustomTestRunner'
+
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         #'rest_framework.authentication.TokenAuthentication',
