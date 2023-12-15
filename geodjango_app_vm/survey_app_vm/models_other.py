@@ -177,3 +177,4 @@ class Values_naturvardesklass(SurveyItemBase):
     color = models.CharField(max_length=255)
     nature_value_class = models.CharField(max_length=255)
     group_id = models.ForeignKey(Group_naturvardesklass, on_delete=models.CASCADE)
+

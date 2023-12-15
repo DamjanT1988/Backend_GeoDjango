@@ -59,6 +59,8 @@ INSERT INTO public.survey_app_vm_annat (attributes, group_id_id) VALUES ('annat 
 INSERT INTO public.survey_app_vm_annat (attributes, group_id_id) VALUES ('anges ej', 7);
 
 
+
+
 -- GROUP CLASSIFICATION (VÄRDEELEMENT)
 INSERT INTO public.survey_app_vm_group_vardeelement ("group") VALUES ('berg och sten');
 INSERT INTO public.survey_app_vm_group_vardeelement ("group") VALUES ('blommor');
@@ -181,16 +183,18 @@ INSERT INTO public.survey_app_vm_ovrigt (attributes, group_id_id) VALUES ('rish�
 INSERT INTO public.survey_app_vm_ovrigt (attributes, group_id_id) VALUES ('snölega', 10);
 INSERT INTO public.survey_app_vm_ovrigt (attributes, group_id_id) VALUES ('anges ej', 10);
 
+
+
 -- GROUP CLASSIFICATION (NATURA2000)
-INSERT INTO public.survey_app_vm_group_natura2000 (attributes, group_id_id) VALUES ('Kust och hav');
-INSERT INTO public.survey_app_vm_group_natura2000 (attributes, group_id_id) VALUES ('Dyner');
-INSERT INTO public.survey_app_vm_group_natura2000 (attributes, group_id_id) VALUES ('Sötvatten');
-INSERT INTO public.survey_app_vm_group_natura2000 (attributes, group_id_id) VALUES ('Gräsmarker');
-INSERT INTO public.survey_app_vm_group_natura2000 (attributes, group_id_id) VALUES ('Myrar');
-INSERT INTO public.survey_app_vm_group_natura2000 (attributes, group_id_id) VALUES ('Berg och substratmarker');
-INSERT INTO public.survey_app_vm_group_natura2000 (attributes, group_id_id) VALUES ('Skog');
-INSERT INTO public.survey_app_vm_group_natura2000 (attributes, group_id_id) VALUES ('Övrigt alternativ');
-INSERT INTO public.survey_app_vm_group_natura2000 (attributes, group_id_id) VALUES ('Övriga alternativ som endast är tillåtna vid förstudier');
+INSERT INTO public.survey_app_vm_group_natura2000 ("group") VALUES ('Kust och hav');
+INSERT INTO public.survey_app_vm_group_natura2000 ("group") VALUES ('Dyner');
+INSERT INTO public.survey_app_vm_group_natura2000 ("group") VALUES ('Sötvatten');
+INSERT INTO public.survey_app_vm_group_natura2000 ("group") VALUES ('Gräsmarker');
+INSERT INTO public.survey_app_vm_group_natura2000 ("group") VALUES ('Myrar');
+INSERT INTO public.survey_app_vm_group_natura2000 ("group") VALUES ('Berg och substratmarker');
+INSERT INTO public.survey_app_vm_group_natura2000 ("group") VALUES ('Skog');
+INSERT INTO public.survey_app_vm_group_natura2000 ("group") VALUES ('Övrigt alternativ');
+INSERT INTO public.survey_app_vm_group_natura2000 ("group") VALUES ('Övriga alternativ som endast är tillåtna vid förstudier');
 
 -- GROUP ATTRIBUTES
 -- 1 Kust och hav
@@ -234,49 +238,49 @@ INSERT INTO public.survey_app_vm_sotvatten (attributes, nature_type_code, group_
 INSERT INTO public.survey_app_vm_sotvatten (attributes, nature_type_code, group_id_id) VALUES ('Mindre vattendrag', 3260, 3);
 
 -- 4 Gräsmarker
-INSERT INTO public.survey_app_vm_grasmarker (attributes, nature_type_code, group_id_id) VALUES ('Fukthedar', 4010, 4);
-INSERT INTO public.survey_app_vm_grasmarker (attributes, nature_type_code, group_id_id) VALUES ('Torra hedar', 4030, 4);
-INSERT INTO public.survey_app_vm_grasmarker (attributes, nature_type_code, group_id_id) VALUES ('Alpina rishedar', 4060, 4);
-INSERT INTO public.survey_app_vm_grasmarker (attributes, nature_type_code, group_id_id) VALUES ('Alpina videbuskmarker', 4080, 4);
-INSERT INTO public.survey_app_vm_grasmarker (attributes, nature_type_code, group_id_id) VALUES ('Enbuskmarker', 5130, 4);
-INSERT INTO public.survey_app_vm_grasmarker (attributes, nature_type_code, group_id_id) VALUES ('Basiska berghällar', 6110, 4);
-INSERT INTO public.survey_app_vm_grasmarker (attributes, nature_type_code, group_id_id) VALUES ('Sandstäpp', 6120, 4);
-INSERT INTO public.survey_app_vm_grasmarker (attributes, nature_type_code, group_id_id) VALUES ('Alpina silikatgräsmarker', 6150, 4);
-INSERT INTO public.survey_app_vm_grasmarker (attributes, nature_type_code, group_id_id) VALUES ('Alpina kalkgräsmarker', 6170, 4);
-INSERT INTO public.survey_app_vm_grasmarker (attributes, nature_type_code, group_id_id) VALUES ('Kalkgräsmarker', 6210, 4);
-INSERT INTO public.survey_app_vm_grasmarker (attributes, nature_type_code, group_id_id) VALUES ('Stagg-gräsmarker', 6230, 4);
-INSERT INTO public.survey_app_vm_grasmarker (attributes, nature_type_code, group_id_id) VALUES ('Silikatgräsmarker', 6270, 4);
-INSERT INTO public.survey_app_vm_grasmarker (attributes, nature_type_code, group_id_id) VALUES ('Alvar', 6280, 4);
-INSERT INTO public.survey_app_vm_grasmarker (attributes, nature_type_code, group_id_id) VALUES ('Fuktängar', 6410, 4);
-INSERT INTO public.survey_app_vm_grasmarker (attributes, nature_type_code, group_id_id) VALUES ('Högörtängar', 6430, 4);
-INSERT INTO public.survey_app_vm_grasmarker (attributes, nature_type_code, group_id_id) VALUES ('Svämängar', 6450, 4);
-INSERT INTO public.survey_app_vm_grasmarker (attributes, nature_type_code, group_id_id) VALUES ('Slåtterängar i låglandet', 6510, 4);
-INSERT INTO public.survey_app_vm_grasmarker (attributes, nature_type_code, group_id_id) VALUES ('Höglänta slåtterängar', 6520, 4);
-INSERT INTO public.survey_app_vm_grasmarker (attributes, nature_type_code, group_id_id) VALUES ('Lövängar', 6530, 4);
-INSERT INTO public.survey_app_vm_grasmarker (attributes, nature_type_code, group_id_id) VALUES ('Karsthällmarker', 8240, 4);
+INSERT INTO public.survey_app_vm_grasmark (attributes, nature_type_code, group_id_id) VALUES ('Fukthedar', 4010, 4);
+INSERT INTO public.survey_app_vm_grasmark (attributes, nature_type_code, group_id_id) VALUES ('Torra hedar', 4030, 4);
+INSERT INTO public.survey_app_vm_grasmark (attributes, nature_type_code, group_id_id) VALUES ('Alpina rishedar', 4060, 4);
+INSERT INTO public.survey_app_vm_grasmark (attributes, nature_type_code, group_id_id) VALUES ('Alpina videbuskmarker', 4080, 4);
+INSERT INTO public.survey_app_vm_grasmark (attributes, nature_type_code, group_id_id) VALUES ('Enbuskmarker', 5130, 4);
+INSERT INTO public.survey_app_vm_grasmark (attributes, nature_type_code, group_id_id) VALUES ('Basiska berghällar', 6110, 4);
+INSERT INTO public.survey_app_vm_grasmark (attributes, nature_type_code, group_id_id) VALUES ('Sandstäpp', 6120, 4);
+INSERT INTO public.survey_app_vm_grasmark (attributes, nature_type_code, group_id_id) VALUES ('Alpina silikatgräsmarker', 6150, 4);
+INSERT INTO public.survey_app_vm_grasmark (attributes, nature_type_code, group_id_id) VALUES ('Alpina kalkgräsmarker', 6170, 4);
+INSERT INTO public.survey_app_vm_grasmark (attributes, nature_type_code, group_id_id) VALUES ('Kalkgräsmarker', 6210, 4);
+INSERT INTO public.survey_app_vm_grasmark (attributes, nature_type_code, group_id_id) VALUES ('Stagg-gräsmarker', 6230, 4);
+INSERT INTO public.survey_app_vm_grasmark (attributes, nature_type_code, group_id_id) VALUES ('Silikatgräsmarker', 6270, 4);
+INSERT INTO public.survey_app_vm_grasmark (attributes, nature_type_code, group_id_id) VALUES ('Alvar', 6280, 4);
+INSERT INTO public.survey_app_vm_grasmark (attributes, nature_type_code, group_id_id) VALUES ('Fuktängar', 6410, 4);
+INSERT INTO public.survey_app_vm_grasmark (attributes, nature_type_code, group_id_id) VALUES ('Högörtängar', 6430, 4);
+INSERT INTO public.survey_app_vm_grasmark (attributes, nature_type_code, group_id_id) VALUES ('Svämängar', 6450, 4);
+INSERT INTO public.survey_app_vm_grasmark (attributes, nature_type_code, group_id_id) VALUES ('Slåtterängar i låglandet', 6510, 4);
+INSERT INTO public.survey_app_vm_grasmark (attributes, nature_type_code, group_id_id) VALUES ('Höglänta slåtterängar', 6520, 4);
+INSERT INTO public.survey_app_vm_grasmark (attributes, nature_type_code, group_id_id) VALUES ('Lövängar', 6530, 4);
+INSERT INTO public.survey_app_vm_grasmark (attributes, nature_type_code, group_id_id) VALUES ('Karsthällmarker', 8240, 4);
 
 -- 5 Myrar
-INSERT INTO public.survey_app_vm_myrar (attributes, nature_type_code, group_id_id) VALUES ('Högmossar', 7110, 5);
-INSERT INTO public.survey_app_vm_myrar (attributes, nature_type_code, group_id_id) VALUES ('Skadade hogmossar', 7120, 5);
-INSERT INTO public.survey_app_vm_myrar (attributes, nature_type_code, group_id_id) VALUES ('Terrängtäckande mossar', 7130, 5);
-INSERT INTO public.survey_app_vm_myrar (attributes, nature_type_code, group_id_id) VALUES ('Öppna mossar och kärr', 7140, 5);
-INSERT INTO public.survey_app_vm_myrar (attributes, nature_type_code, group_id_id) VALUES ('Källor och källkärr', 7160, 5);
-INSERT INTO public.survey_app_vm_myrar (attributes, nature_type_code, group_id_id) VALUES ('Agkärr', 7210, 5);
-INSERT INTO public.survey_app_vm_myrar (attributes, nature_type_code, group_id_id) VALUES ('Kalktuffkällor', 7220, 5);
-INSERT INTO public.survey_app_vm_myrar (attributes, nature_type_code, group_id_id) VALUES ('Rikkärr', 7230, 5);
-INSERT INTO public.survey_app_vm_myrar (attributes, nature_type_code, group_id_id) VALUES ('Alpina översilningskärr', 7240, 5);
-INSERT INTO public.survey_app_vm_myrar (attributes, nature_type_code, group_id_id) VALUES ('Aapamyrar', 7310, 5);
-INSERT INTO public.survey_app_vm_myrar (attributes, nature_type_code, group_id_id) VALUES ('Palsmyrar', 7320, 5);
+INSERT INTO public.survey_app_vm_myrer (attributes, nature_type_code, group_id_id) VALUES ('Högmossar', 7110, 5);
+INSERT INTO public.survey_app_vm_myrer (attributes, nature_type_code, group_id_id) VALUES ('Skadade hogmossar', 7120, 5);
+INSERT INTO public.survey_app_vm_myrer (attributes, nature_type_code, group_id_id) VALUES ('Terrängtäckande mossar', 7130, 5);
+INSERT INTO public.survey_app_vm_myrer (attributes, nature_type_code, group_id_id) VALUES ('Öppna mossar och kärr', 7140, 5);
+INSERT INTO public.survey_app_vm_myrer (attributes, nature_type_code, group_id_id) VALUES ('Källor och källkärr', 7160, 5);
+INSERT INTO public.survey_app_vm_myrer (attributes, nature_type_code, group_id_id) VALUES ('Agkärr', 7210, 5);
+INSERT INTO public.survey_app_vm_myrer (attributes, nature_type_code, group_id_id) VALUES ('Kalktuffkällor', 7220, 5);
+INSERT INTO public.survey_app_vm_myrer (attributes, nature_type_code, group_id_id) VALUES ('Rikkärr', 7230, 5);
+INSERT INTO public.survey_app_vm_myrer (attributes, nature_type_code, group_id_id) VALUES ('Alpina översilningskärr', 7240, 5);
+INSERT INTO public.survey_app_vm_myrer (attributes, nature_type_code, group_id_id) VALUES ('Aapamyrar', 7310, 5);
+INSERT INTO public.survey_app_vm_myrer (attributes, nature_type_code, group_id_id) VALUES ('Palsmyrar', 7320, 5);
 
 -- 6 Berg och substratmarker
-INSERT INTO public.survey_app_vm_berg_substratmarker (attributes, nature_type_code, group_id_id) VALUES ('Silikatrasmarker', 8110, 6);
-INSERT INTO public.survey_app_vm_berg_substratmarker (attributes, nature_type_code, group_id_id) VALUES ('Kalkrasmarker', 8120, 6);
-INSERT INTO public.survey_app_vm_berg_substratmarker (attributes, nature_type_code, group_id_id) VALUES ('Kalkbranter', 8210, 6);
-INSERT INTO public.survey_app_vm_berg_substratmarker (attributes, nature_type_code, group_id_id) VALUES ('Silikatbranter', 8220, 6);
-INSERT INTO public.survey_app_vm_berg_substratmarker (attributes, nature_type_code, group_id_id) VALUES ('Hällmarkstorräng', 8230, 6);
-INSERT INTO public.survey_app_vm_berg_substratmarker (attributes, nature_type_code, group_id_id) VALUES ('Grottor', 8310, 6);
-INSERT INTO public.survey_app_vm_berg_substratmarker (attributes, nature_type_code, group_id_id) VALUES ('Havsgrottor', 8330, 6);
-INSERT INTO public.survey_app_vm_berg_substratmarker (attributes, nature_type_code, group_id_id) VALUES ('Glaciarer', 8340, 6);
+INSERT INTO public.survey_app_vm_berg_substratmark (attributes, nature_type_code, group_id_id) VALUES ('Silikatrasmarker', 8110, 6);
+INSERT INTO public.survey_app_vm_berg_substratmark (attributes, nature_type_code, group_id_id) VALUES ('Kalkrasmarker', 8120, 6);
+INSERT INTO public.survey_app_vm_berg_substratmark (attributes, nature_type_code, group_id_id) VALUES ('Kalkbranter', 8210, 6);
+INSERT INTO public.survey_app_vm_berg_substratmark (attributes, nature_type_code, group_id_id) VALUES ('Silikatbranter', 8220, 6);
+INSERT INTO public.survey_app_vm_berg_substratmark (attributes, nature_type_code, group_id_id) VALUES ('Hällmarkstorräng', 8230, 6);
+INSERT INTO public.survey_app_vm_berg_substratmark (attributes, nature_type_code, group_id_id) VALUES ('Grottor', 8310, 6);
+INSERT INTO public.survey_app_vm_berg_substratmark (attributes, nature_type_code, group_id_id) VALUES ('Havsgrottor', 8330, 6);
+INSERT INTO public.survey_app_vm_berg_substratmark (attributes, nature_type_code, group_id_id) VALUES ('Glaciarer', 8340, 6);
 
 -- 7 Skog
 INSERT INTO public.survey_app_vm_skog (attributes, nature_type_code, group_id_id) VALUES ('Taiga', 9010, 7);
@@ -292,16 +296,18 @@ INSERT INTO public.survey_app_vm_skog (attributes, nature_type_code, group_id_id
 INSERT INTO public.survey_app_vm_skog (attributes, nature_type_code, group_id_id) VALUES ('Näringsrik ekskog', 9160, 7);
 INSERT INTO public.survey_app_vm_skog (attributes, nature_type_code, group_id_id) VALUES ('Ädellövskog i branter', 9180, 7);
 INSERT INTO public.survey_app_vm_skog (attributes, nature_type_code, group_id_id) VALUES ('Näringsfattig ekskog', 9190, 7);
-INSERT INTO public.survey_app_vm_skog (attributes, nature_type_code, group_id_id) VALUES ('Näringsfattig ekskog - 91D0', 7);
-INSERT INTO public.survey_app_vm_skog (attributes, nature_type_code, group_id_id) VALUES ('Näringsfattig ekskog - 91E0', 7);
-INSERT INTO public.survey_app_vm_skog (attributes, nature_type_code, group_id_id) VALUES ('Näringsfattig ekskog - 91F0', 7);
+INSERT INTO public.survey_app_vm_skog (attributes, nature_type_code, group_id_id) VALUES ('Näringsfattig ekskog - 91D0', 0, 7);
+INSERT INTO public.survey_app_vm_skog (attributes, nature_type_code, group_id_id) VALUES ('Näringsfattig ekskog - 91E0', 0, 7);
+INSERT INTO public.survey_app_vm_skog (attributes, nature_type_code, group_id_id) VALUES ('Näringsfattig ekskog - 91F0', 0, 7);
 
 -- 8 Övrigt alternativ
-INSERT INTO public.survey_app_vm_ovrigt_2 (attributes, nature_type_code, group_id_id) VALUES ('Ingen del av biotopen bedöms uppfylla den svenska tolkningen av EU-definitionen för någon Natura 2000-naturtyp - NVI01', 8);
+INSERT INTO public.survey_app_vm_ovrigt_2 (attributes, nature_type_code, group_id_id) VALUES ('Ingen del av biotopen bedöms uppfylla den svenska tolkningen av EU-definitionen för någon Natura 2000-naturtyp - NVI01', 0, 8);
 
 -- 9 Övriga alternativ som endast är tillåtna vid förstudier
-INSERT INTO public.survey_app_vm_ovrigt_forstudier (attributes, nature_type_code, group_id_id) VALUES ('Hela eller delar av biotopen bedoms uppfylla den svenska tolkningen av EU-definitionen för någon Natura 2000-naturtyp, men naturtyp kan inte fastställas - NVI02', 9);
-INSERT INTO public.survey_app_vm_ovrigt_forstudier (attributes, nature_type_code, group_id_id) VALUES ('Förstudie; och Natura 2000-naturtyp har inte kunnat bedomas. - NVI03', 9);
+INSERT INTO public.survey_app_vm_ovrigt_forstudier (attributes, nature_type_code, group_id_id) VALUES ('Hela eller delar av biotopen bedoms uppfylla den svenska tolkningen av EU-definitionen för någon Natura 2000-naturtyp, men naturtyp kan inte fastställas - NVI02', 0, 9);
+INSERT INTO public.survey_app_vm_ovrigt_forstudier (attributes, nature_type_code, group_id_id) VALUES ('Förstudie; och Natura 2000-naturtyp har inte kunnat bedomas. - NVI03', 0, 9);
+
+
 
 -- GROUP CLASSIFICATION (HYDROMORFOLOGISK)
 INSERT INTO public.survey_app_vm_group_hydromorfologisk ("group") VALUES ('Hydromorfologisk typ');
@@ -324,6 +330,8 @@ INSERT INTO public.survey_app_vm_values_hydro (attributes, type_code, group_id_i
 INSERT INTO public.survey_app_vm_values_hydro (attributes, type_code, group_id_id) VALUES ('Överfördjupade vattendrag i finkorniga sediment', 'F', 1);
 INSERT INTO public.survey_app_vm_values_hydro (attributes, type_code, group_id_id) VALUES ('Vattendrag i torv', 'T', 1);
 
+
+
 -- GROUP CLASSIFICATION (LIVSMILJO GRAD)
 INSERT INTO public.survey_app_vm_group_livsmiljo_grad ("group") VALUES ('Livsmiljögrad');
 
@@ -332,6 +340,8 @@ INSERT INTO public.survey_app_vm_values_livsmiljo (attributes, type_code, group_
 INSERT INTO public.survey_app_vm_values_livsmiljo (attributes, type_code, group_id_id) VALUES ('Området har goda förutsättningar att upprätthålla eller bidra till långsiktigt livskraftiga populationer för arten eller organismgruppen.', 'Lämplig livsmiljö', 1);
 INSERT INTO public.survey_app_vm_values_livsmiljo (attributes, type_code, group_id_id) VALUES ('Området har vissa förutsättningar att upprätthålla eller bidra till långsiktigt livskraftiga populationer for arten eller organismgruppen.', 'Möjlig livsmiljö', 1);
 INSERT INTO public.survey_app_vm_values_livsmiljo (attributes, type_code, group_id_id) VALUES ('Området saknar uppenbara förutsättningar att upprätthålla eller bidra till långsiktigt livskraftiga populationer för arten eller organismgruppen.', 'Olämplig livsmiljö', 1);
+
+
 
 -- GROUP CLASSIFICATION (KVANTIFIERAD ARTFÖREKOMST)
 INSERT INTO public.survey_app_vm_group_kvant_artforekomst ("group") VALUES ('Kvantifiering av artförekomster');
@@ -342,6 +352,8 @@ INSERT INTO public.survey_app_vm_values_kvant_artforekomst (attributes, type_cod
 INSERT INTO public.survey_app_vm_values_kvant_artforekomst (attributes, type_code, group_id_id) VALUES ('Arten förekommer i liten mängd, i en gles förekomst, i en svag population eller har på annat sätt en mindre betydelsefull förekomst.', 'Sparsam förekomst', 1);
 INSERT INTO public.survey_app_vm_values_kvant_artforekomst (attributes, type_code, group_id_id) VALUES ('Arten är ej funnen trots att den eftersökts så noga att det är mer sannolikt att den inte förekommer än motsatsen.', 'Förekommer sannolikt inte', 1);
 INSERT INTO public.survey_app_vm_values_kvant_artforekomst (attributes, type_code, group_id_id) VALUES ('Arten har inte noterats, men har heller inte eftersökts tillräckligt noga for att kunna avgöra om den finns.', 'Okänd förekomst', 1);
+
+
 
 -- GROUP CLASSIFICATION (KARTLÄGGNINGSTYP)
 INSERT INTO public.survey_app_vm_group_kartlaggningstyp ("group") VALUES ('Kartläggningstyp');
@@ -377,6 +389,8 @@ INSERT INTO public.survey_app_vm_values_kartlaggningstyp (attributes, group_id_i
 INSERT INTO public.survey_app_vm_values_kartlaggningstyp (attributes, group_id_id) VALUES ('fördjupad inventering - Bottenmiljö', 1);
 INSERT INTO public.survey_app_vm_values_kartlaggningstyp (attributes, group_id_id) VALUES ('fördjupad inventering - Artförekomster', 1);
 INSERT INTO public.survey_app_vm_values_kartlaggningstyp (attributes, group_id_id) VALUES ('fördjupad inventering - Livsmiljöer', 1);
+
+
 
 -- GROUP CLASSIFICATION (NATURVÄRDESKLASS)
 INSERT INTO public.survey_app_vm_group_naturvardsklass ("group") VALUES ('Naturvärdesklass');
