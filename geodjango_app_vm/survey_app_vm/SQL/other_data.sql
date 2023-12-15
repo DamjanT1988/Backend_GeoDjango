@@ -393,7 +393,7 @@ INSERT INTO public.survey_app_vm_values_kartlaggningstyp (attributes, group_id_i
 
 
 -- GROUP CLASSIFICATION (NATURVÄRDESKLASS)
-INSERT INTO public.survey_app_vm_group_naturvardsklass ("group") VALUES ('Naturvärdesklass');
+INSERT INTO public.survey_app_vm_group_naturvardesklass ("group") VALUES ('Naturvärdesklass');
 
 -- GROUP ATTRIBUTES
 INSERT INTO public.survey_app_vm_values_naturvardesklass (attributes, color, nature_value_class, group_id_id) VALUES ('Högsta naturvärde, naturvärdesklass 1', 'R: 150 G:0 B:0', 'Högsta naturvärde', 1);
