@@ -104,6 +104,9 @@ class Kulturlandskap(SurveyItemBase):
 class Myr(SurveyItemBase):
     group_id = models.ForeignKey(Group_vardeelement, on_delete=models.CASCADE)
 
+class Strand(SurveyItemBase):
+    group_id = models.ForeignKey(Group_vardeelement, on_delete=models.CASCADE)
+
 class Trad(SurveyItemBase):
     group_id = models.ForeignKey(Group_vardeelement, on_delete=models.CASCADE)
 

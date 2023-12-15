@@ -107,6 +107,12 @@ class MyrSerializer(serializers.ModelSerializer):
         model = Myr
         fields = '__all__'
 
+class StrandSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Strand
+        fields = '__all__'
+
+
 class TradSerializer(serializers.ModelSerializer):
     class Meta:
         model = Trad
