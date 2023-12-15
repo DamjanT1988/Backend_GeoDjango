@@ -675,3 +675,295 @@ VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_nat WHERE s
 
 INSERT INTO public.survey_app_vm_myr_mark (category_id, specific_code, biotopemark, description) 
 VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_nat WHERE section_code = 'MY80'), 'MY84', 'lösbotten', 'Blöt myr eller del av myr med ofta vattentäckt bottenmaterial bestående av dy, gyttja och torvslam. Sparsamt med vegetation.');
+
+
+
+
+-- GROUP CLASS MARK ANTROPOGEN
+INSERT INTO public.survey_app_vm_ecosystem_category_mark_ant (section_code, category)
+VALUES ('AT10', 'Produktionsskog');
+
+INSERT INTO public.survey_app_vm_ecosystem_category_mark_ant (section_code, category)
+VALUES ('AT20', 'Kultiverad gräsmark (se även park och trädgård nedan)');
+
+INSERT INTO public.survey_app_vm_ecosystem_category_mark_ant (section_code, category)
+VALUES ('AT30', 'Anlagd park och trädgård');
+
+INSERT INTO public.survey_app_vm_ecosystem_category_mark_ant (section_code, category)
+VALUES ('AT40', 'Bebyggelse och anlagd mark');
+
+INSERT INTO public.survey_app_vm_ecosystem_category_mark_ant (section_code, category)
+VALUES ('AT50', 'Infrastruktur');
+
+INSERT INTO public.survey_app_vm_ecosystem_category_mark_ant (section_code, category)
+VALUES ('AT60', 'Lämningar (kan oftast betraktas som element)');
+
+INSERT INTO public.survey_app_vm_ecosystem_category_mark_ant (section_code, category)
+VALUES ('AT70', 'Massor, upplag, täkter');
+
+INSERT INTO public.survey_app_vm_ecosystem_category_mark_ant (section_code, category)
+VALUES ('AT80', 'Komplettering - diverse marktyper');
+
+INSERT INTO public.survey_app_vm_ecosystem_category_mark_ant (section_code, category)
+VALUES ('AT90', 'Övrigt');
+
+-- AT 10 - Produktionsskog
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT10'), 'AT1', 'produktionsskog', 'Skog som brukats genom trakthyggesbruk, plantering eller andra metoder i syfte att producera trävaror, vilket på ett påtagligt sätt försämrat förutsättningar för biologisk mångfald.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT10'), 'AT11', 'mogen produktionsskog', 'Produktionsskog som inom snar framtid är mogen för avverkning.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT10'), 'AT12', 'yngre produktionsskog', 'Produktionsskog i form av yngre skogsplantering eller frösådd.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT10'), 'AT13', 'hyǥge', 'Produktionsskog i form av kalhygge.');
+
+-- AT 20 - Kultiverad gräsmark
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT20'), 'AT2', 'kultiverad gräsmark', 'Påtagligt kultiverad och antropogent påverkad gräsmark i allmänhet.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT20'), 'AT21', 'åkermark', 'Mark som i betydande omfattning och i modern tid har jordbearbetats i syfte att odla grödor. Marken betraktas som åkermark även efter det att odlingen har upphört.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT20'), 'AT211', 'spannmålsodling', 'Åkermark som odlas med spannmål.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT20'), 'AT212', 'grönsaksodling', 'Åkermark som odlas med grönsaker.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT20'), 'AT22', 'vall', 'Åkermark som är besådd med vallväxter i syfte att skördas som hö eller nyttjas för bete eller som grönmassa för ensilering.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT20'), 'AT221', 'betesvall', 'Åkermark som nyttjas för bete.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT20'), 'AT222', 'flerårsvall', 'Åkermark som slås eller betas regelbundet utan ytterligare markbearbetning eller insådd.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT20'), 'AT23', 'träda', 'Åkermark som tillfälligt vilar från produktion av grödor.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT20'), 'AT24', 'äldre åker', 'Åkermark som inte längre brukas.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT20'), 'AT25', 'åkerren', 'Oplöjd remsa i kanten av en åker.');
+
+-- AT 30 - Anlagd park och trädgård
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT30'), 'AT3', 'anlagd park/trädgård', 'Anlagd park och/eller trädgård.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT30'), 'AT31', 'anlagd park', 'Park eller delar av park som är anlagd eller planterad.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT30'), 'AT32', 'anlagd kyrkogård', 'Kyrkogård eller del av kyrkogård som är anlagd eller planterad.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT30'), 'AT33', 'anlagd trädgård', 'Trädgård som anlagts. Naturtomt som inte domineras av sina byggnader förs till naturliga ekosystem.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT30'), 'AT331', 'koloniträdgård', 'Område med små odlingslotter.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT30'), 'AT332', 'fruktträdgård', 'Trädgård eller odling av fruktträd.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT30'), 'AT34', 'planterade träd', 'Planterade träd i urban miljö, trädgårdar, parker och liknande platser. Skogsplantering räknas som produktionsskog.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT30'), 'AT341', 'allé', 'Enkel eller dubbel rad av planterade träd längs en väg eller i ett öppet landskap.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT30'), 'AT351', 'planterade buskar', 'Planterade buskar.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT30'), 'AT361', 'gräsmatta', 'Klippt grasmatta.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT30'), 'AT362', 'höggräsyta', 'Kultiverad eller kvavepaverkad mark som domineras av hogvuxna bredbladiga gräs.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT30'), 'AT363', 'anlagd äng', 'Örtrik ängsmark som anlagts på tidigare gräsmatta eller åkermark.');
+
+-- AT40 - Bebyggelse och anlagd mark
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT40'), 'AT4', 'anlagd/bebyggd mark', 'Mark som domineras av byggnader och anlagd mark.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT40'), 'AT41', 'byggnad', 'Hus eller annan typ av byggnad.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT40'), 'AT411', 'byggnader', 'Mark som domineras av byggnader i allmänhet.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT40'), 'AT421', 'industrimark', 'Mark med industri och verksamheter med anknytning till industrin.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT40'), 'AT422', 'järnvägsstation/bangård', 'Station och spårområden.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT40'), 'AT423', 'flygplats', 'Markområde med en eller flera banor för landning och start med flygplan.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT40'), 'AT424', 'hamn', 'Plats där båtar kan ankra och förtöja för skydd, lastning, lossning och uppläggning.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT40'), 'AT425', 'idrottsanläggning', 'Byggnader och anlagd mark avsedd för idrottsutövare och åskådare.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT40'), 'AT426', 'motorbana', 'Plats för utövande av motorsport eller övningsverksamhet med motorfordon.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT40'), 'AT43', 'bostadsområde', 'Mark som domineras av bostäder med tillhörande tomter.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT40'), 'AT431', 'villaområde', 'Mark som domineras av småhus och trädgårdar.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT40'), 'AT432', 'gårdsmiljö', 'Tomt och mark för verksamheter i direkt anslutning till en lantgård.');
+
+-- AT50 - Infrastruktur
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT50'), 'AT5', 'infrastruktur', 'Mark som domineras av vägar, järnvägar och annan infrastruktur.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT50'), 'AT51', 'väg', 'Väg av någon typ.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT50'), 'AT511', 'brukningsväg', 'Mindre väg som främst är avsedd för jordbruk, skogsbruk eller annat bruk.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT50'), 'AT5111', 'skogsväg', 'Mindre väg som främst är avsedd för utförsling av virke eller andra transporter i skogsbruk, eller liknande väg genom skog.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT50'), 'AT512', 'vägren', 'Vägens sidoområde.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT50'), 'AT513', 'vägbank', 'Anlagd vall av jord, grus eller sten vilken bär eller har burit en väg.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT50'), 'AT514', 'vägskärning', 'Mer eller mindre brant slänt av jord, grus eller sten som uppstått där delar av den ursprungliga marken grävts bort för att skapa en jämn väg eller järnväg.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT50'), 'AT52', 'järnväg', 'Anläggning för spårbundna fordon. Avser alla delar av anläggningen.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT50'), 'AT522', 'bullervall', 'Anlagd vall i syfte att hindra bullerspridning från trafik.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT50'), 'AT523', 'bro', 'Byggnadsverk som byggts i syfte att leda trafik över ett korsande hinder.');
+
+-- AT60 - Lämningar
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT60'), 'AT6', 'antropogen lämning', 'Antropogena lämningar i allmänhet.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT60'), 'AT61', 'historisk lämning', 'Äldre lämning i allmänhet.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT60'), 'AT611', 'ruin', 'Lämning från övergiven byggnad.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT60'), 'AT612', 'husgrund', 'Lämning av grund till byggnad.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT60'), 'AT613', 'torpställe', 'Plats för övergivet torp.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT60'), 'AT614', 'kvarn', 'Äldre vatten- eller väderkvarn.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT60'), 'AT615', 'borg', 'Äldre befästningsanläggning.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT60'), 'AT616', 'äldre stenbro', 'Äldre bro byggd av sten.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT60'), 'AT621', 'stenmur', 'Mur av sten av nyare eller äldre ursprung.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT60'), 'AT622', 'stenröse', 'Upplag av sten av nyare eller äldre ursprung.');
+
+-- AT70 - Massor, upplag, täkter
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT70'), 'AT7', 'täkt/upplag', 'Täkter och upplag i allmänhet.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT70'), 'AT71', 'upplag', 'Område för tillfällig eller permanent deponering av till exempel avfall, produkter eller material.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT70'), 'AT711', 'soptipp', 'Område som använts för deponering av sopor.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT70'), 'AT712', 'trädgårdsdeponi', 'Område som använts för deponering trädgårdsavfall.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT70'), 'AT713', 'varphögar', 'Ofyndigt berg som avskilts från malm eller industrimineral vid förberedelser för brytning eller genom skrädning eller sovring. Benämningen varp har inom berg- och mineralteknik i allt högre grad ersatts av termen gråberg.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT70'), 'AT714', 'spånhögar', 'Deponi med träspån.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT70'), 'AT715', 'veddeponi', 'Deponi med ved/stockar.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT70'), 'AT716', 'fyllnadsmassor', 'Alla typer av fyllnadsmassor som påverkats av jordförflyttning, oavsett ytans storlek eller i vilken mån de blivit bevuxna med vegetation.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT70'), 'AT72', 'täkt', 'Plats som utnyttjas för utvinning, brytning eller insamling av grus, morän, berg, torv, tång, blocksten, lera, sand, kalksten, vatten, jord, eller annat material.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT70'), 'AT721', 'gruva', 'Arbetsplats för brytning av malmer (mineral) ovan eller under jord, med pågående eller avslutad verksamhet.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT70'), 'AT7211', 'stenbrott', 'Pågående eller övergiven täkt i form av dagbrott, för lossbrytning av bergarter, "sten", för användning bland annat som byggnads- och monumentsten.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT70'), 'AT72111', 'kalkbrott', 'Stenbrott i kalkberg.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT70'), 'AT722', 'grustag', 'Pågående eller övergiven täkt i sand och grus.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT70'), 'AT723', 'skalgrustäkt', 'Pågående eller övergiven täkt i skalgrus.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT70'), 'AT724', 'lertäkt', 'Pågående eller övergiven täkt i lera.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT70'), 'AT725', 'torvtäkt', 'Pågående eller övergiven täkt i torv.');
+
+-- AT80 - Komplettering - diverse marktyper
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT80'), 'AT81', 'ruderatmark', 'Mark som ofta störs av mänsklig verksamhet, vilket gör att marken åtminstone delvis ligger öppen, utan täckande växtlighet.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT80'), 'AT82', 'grusplan', 'Anlagd yta med grus.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT80'), 'AT83', 'hårdgjord yta', 'Anlagd hårdgjord yta av exempelvis asfalt, betong, stenplattor eller andra hårda, för platsen, artificiella material.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT80'), 'AT84', 'degenererad myr', 'Myr som dikats i så stor omfattning att torvbildning har upphört och myrens naturliga hydromorfologi är helt förändrad.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT80'), 'AT85', 'röjningsbuskage', 'Buskar och sly som röjs regelbundet, vilket hindrar utveckling av ett naturligt busk- och trädskikt, till exempel utmed vägar, vid bebyggelse och i kraftledningsgator.');
+
+-- AT90 - Övrigt
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT90'), 'AT91', 'upphörd verksamhet', 'Antropogen terrester miljö med upphörd verksamhet.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT90'), 'AT92', 'aktiv verksamhet', 'Antropogen terrester miljö med pågående aktiv verksamhet.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT90'), 'AT93', 'igenväxningsmark', 'Antropogen terrester miljö med upphörd eller svag hävd som innebär att tydlig igenväxning med träd och buskar pågår. Kan användas som biotopbeteckning för obestämd antropogen terrester miljö under igenväxning. Kan även användas som ytterligare biotopbeteckning för specifik antropogen terrester miljö under igenväxning.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT90'), 'AT94', 'äldre kulturmiljö', 'Biotop som har sitt ursprung från äldre tid och som kan ha betydelse som historisk kulturmiljö eller biologiskt kulturarv.');
+
+INSERT INTO public.survey_app_vm_values_mark_ant (category_id, specific_code, biotopemark, description)
+VALUES ((SELECT id FROM public.survey_app_vm_ecosystem_category_mark_ant WHERE section_code = 'AT90'), 'AT95', 'naturbaserad lösning', 'Antropogent skapade biotoper som anlagts med syftet att gynna och förstärka biologisk mångfald.');
