@@ -13,6 +13,7 @@ setuptools = "*"
 requests = "*"
 djangorestframework-gis = "*"
 unittest-xml-reporting = "*"
+fiona = "*"
 
 [dev-packages]
 

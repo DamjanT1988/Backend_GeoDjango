@@ -40,7 +40,7 @@ urlpatterns = [
     path('api/transfer/<int:pk>/', ProjectTransferView.as_view(), name='transfer-project'), # GET a project, PUT a project
     #path('api/transfer/create/', ProjectTransferView.as_view(), name='transfer-project-create'), # POST a new project
 #file creation
-    path('api/geojson/', GeoJSONAPIView.as_view(), name='geojson_api'),
+    path('api/file/geojson/', GeoJSONAPIView.as_view(), name='geojson_api'),
     path('download/shapefile/<int:data_id>/', download_shapefile, name='download_shapefile'),
 ]
 
