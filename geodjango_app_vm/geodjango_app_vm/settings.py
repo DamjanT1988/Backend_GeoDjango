@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     "report_app_vm",
     "transfer_app_vm",
     "survey_app_vm",
+    "filecreation_app_vm",
     "rest_framework_gis",
     "rest_framework_simplejwt.token_blacklist",
     "rest_framework",
