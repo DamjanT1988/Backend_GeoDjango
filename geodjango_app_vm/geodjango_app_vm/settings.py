@@ -4,10 +4,6 @@ from datetime import timedelta
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-1tiw*jt!73vryohvmrd&4zbheg-4=ot1q=tf4-!cr5#tq9fi1_"
 
@@ -26,20 +22,14 @@ TEST_RUNNER = 'geodjango_app_vm.custom_test_runner.CustomTestRunner'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        #'rest_framework.authentication.TokenAuthentication',
-        #'rest_framework.authentication.SessionAuthentication',
-        #'jwt_auth.authentication.JWTAuthentication',
-        #'JWTAuthentication',
         'rest_framework.authentication.TokenAuthentication',
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ],
-    # ... (other DRF settings as needed)
 }
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=5),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=10),
-    # ... other JWT settings ...
 }
 
 # Application definition
@@ -63,10 +53,6 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt.token_blacklist",
     "rest_framework",
     "debug_toolbar",
-    #"API_REST_app_vm",
-    #"rest_auth",
-    #"corsheaders",
-    #"rest_framework.authtoken",
 ]
 
 MIDDLEWARE = [
@@ -93,8 +79,7 @@ INTERNAL_IPS = [
 ]
 
 CORS_ORIGIN_WHITELIST = [
-    'http://localhost:3000',  # Assuming your frontend runs on localhost:3000
-    # ... (other allowed origins)
+    'http://localhost:3000',
 ]
 
 

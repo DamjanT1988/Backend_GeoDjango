@@ -1,5 +1,4 @@
-import os
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
@@ -14,6 +13,8 @@ import fiona
 import tempfile
 import shutil
 import json
+import os
+
 
 class GeoJSONAPIView(APIView):
     parser_classes = [JSONParser]
@@ -77,5 +78,106 @@ def download_shapefile(request, data_id):
     # Create a Django response object, setting the correct content type and headers
     response = HttpResponse(sio, content_type='application/zip')
     response['Content-Disposition'] = 'attachment; filename="data.zip"'
+
+    return response
+
+
+def download_geopackfile(request, data_id):
+    # Fetch the data from the database
+    data = GeospatialData.objects.get(id=data_id)
+    geojson = data.geom.geojson
+    geos_geom = GEOSGeometry(geojson)
+
+    # Convert the GeoJSON string to a Python dictionary
+    geometry = json.loads(geos_geom.geojson)
+
+    # Define schema for GeoPackage
+    schema = {
+        'geometry': 'Polygon',  # Adjust based on your data
+        'properties': {
+            'name': 'str',  # Assuming 'name' is a string field in your model
+            #'category': 'str'  # Assuming 'category' is a string field in your model
+        },
+    }
+
+    # Temporary directory for storing GeoPackage
+    temp_dir = tempfile.mkdtemp()
+    geopackage_path = os.path.join(temp_dir, 'data.gpkg')
+
+    # Write the data to a GeoPackage
+    with fiona.open(geopackage_path, 'w', driver='GPKG',
+                    crs=from_epsg(4326),  # Replace with your data's CRS
+                    schema=schema) as layer:
+        layer.write({
+            'geometry': geometry,
+            'properties': {
+                'name': data.name,  # Adjust field names based on your model
+                #'category': data.category
+            },
+        })
+
+    # Read the GeoPackage file and prepare it for download
+    with open(geopackage_path, 'rb') as gpkg:
+        response = HttpResponse(gpkg, content_type='application/octet-stream')
+        response['Content-Disposition'] = 'attachment; filename="data.gpkg"'
+
+    # Clean up the files from the filesystem
+    os.remove(geopackage_path)
+    os.rmdir(temp_dir)
+
+    return response
+
+
+
+def download_gmlfile(request, data_id):
+    data = GeospatialData.objects.get(id=data_id)
+    geojson = data.geom.geojson
+    geos_geom = GEOSGeometry(geojson)
+    geometry = json.loads(geos_geom.geojson)
+
+    schema = {
+        'geometry': 'Polygon',  # Adjust based on your data
+        'properties': {
+            'name': 'str',  # Assuming 'name' is a string field in your model
+            #'category': 'str'  # Assuming 'category' is a string field in your model
+        },
+    }
+
+    temp_dir = tempfile.mkdtemp()
+    gml_path = os.path.join(temp_dir, 'data.gml')
+
+    with fiona.open(gml_path, 'w', driver='GML',
+                    crs=from_epsg(4326),  # Replace with your data's CRS
+                    schema=schema) as layer:
+        layer.write({
+            'geometry': geometry,
+            'properties': {
+                'name': data.name,  # Adjust field names based on your model
+                #'category': data.category
+            },
+        })
+
+    # Create response outside of the 'with open' context to ensure the file is closed
+    with open(gml_path, 'rb') as gml_file:
+        gml_data = gml_file.read()
+
+    response = HttpResponse(gml_data, content_type='application/gml+xml')
+    response['Content-Disposition'] = 'attachment; filename="data.gml"'
+
+    # Clean up files
+    shutil.rmtree(temp_dir)  # Delete directory and all its contents
+
+    return response
+
+def download_geojsonfile(request, data_id):
+    # Retrieve the geospatial data object from the database
+    data = GeospatialData.objects.get(id=data_id)
+
+    # Convert the data to GeoJSON
+    geojson = data.geom.geojson
+
+    # Create a response object with the GeoJSON content
+    response = JsonResponse(geojson, safe=False)
+    response['Content-Disposition'] = 'attachment; filename="data.geojson"'
 
     return response
