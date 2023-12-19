@@ -9,13 +9,28 @@ class SpeciesCentralDatabankList(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
 
 class SpeciesUserDatabankList(generics.ListAPIView):
+    """
+    A view that returns a list of records for the currently authenticated user.
+
+    Inherits from `generics.ListAPIView` and uses the `SpeciesUserDatabankSerializer`
+    for serialization. Requires authentication for access.
+
+    Attributes:
+        serializer_class (Serializer): The serializer class to use for serialization.
+        permission_classes (list): The permission classes required for access.
+
+    Methods:
+        get_queryset(): Returns a queryset of records for the currently authenticated user.
+    """
     serializer_class = SpeciesUserDatabankSerializer
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         """
-        This view should return a list of all records for
-        the currently authenticated user.
+        Returns a queryset of records for the currently authenticated user.
+
+        Returns:
+            QuerySet: A queryset of records filtered by the currently authenticated user.
         """
         user = self.request.user
         return SpeciesUserDatabank.objects.filter(user=user)

@@ -13,11 +13,28 @@ class UserCreationSerializer(serializers.ModelSerializer):
     user_additional = UserAdditionalSerializer(required=False)
 
     class Meta:
+        """
+        Meta class for defining metadata options for the UserSerializer.
+        
+        Attributes:
+            model (Model): The model class associated with the serializer.
+            fields (list): The fields to include in the serialized representation.
+            extra_kwargs (dict): Additional keyword arguments for field options.
+        """
         model = User
         fields = ['username', 'email', 'password', 'first_name', 'last_name', 'user_additional']
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
+        """
+        Create and save a new User instance.
+
+        Args:
+            validated_data (dict): The validated data for creating the User.
+
+        Returns:
+            User: The created User instance.
+        """
         user_additional_data = validated_data.pop('user_additional', None)
         user = User.objects.create_user(**validated_data)
         user.set_password(validated_data['password'])
@@ -29,6 +46,16 @@ class UserCreationSerializer(serializers.ModelSerializer):
         return user
 
     def update(self, instance, validated_data):
+        """
+        Update and save an existing User instance.
+
+        Args:
+            instance (User): The existing User instance to be updated.
+            validated_data (dict): The validated data for updating the User.
+
+        Returns:
+            User: The updated User instance.
+        """
         user_additional_data = validated_data.pop('user_additional', None)
         user_additional_instance = getattr(instance, 'user_additional', None)
 

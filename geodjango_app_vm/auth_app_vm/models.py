@@ -2,6 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class User_additional(models.Model):
+    """
+    Model representing additional user information.
+    """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     account_type = models.BooleanField("Företagskonto:", default=False)
     organization_name = models.CharField("Organisationsnamn:", max_length=255, null=True, blank=True)
@@ -12,10 +15,13 @@ class User_additional(models.Model):
     phone_number = models.CharField("Telefonnummer:", max_length=100, null=True, blank=True)
 
     class Meta:
-            verbose_name = "Ytterligare användarinformation"
-            verbose_name_plural = "Ytterligare användarinformation"
+        verbose_name = "Ytterligare användarinformation"
+        verbose_name_plural = "Ytterligare användarinformation"
 
 class User_payment(models.Model):
+    """
+    Model representing user payment and account information.
+    """
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='payments')
     active_account = models.BooleanField("Aktiverat konto:", default=True)
     Payment_latest_invoice = models.BooleanField("Betalat senaste faktura:", default=False)
@@ -31,16 +37,19 @@ class User_payment(models.Model):
     payment_comment = models.TextField("Kommentar om kund:", null=True, blank=True)
 
     class Meta:
-            verbose_name = "Betalnings- och kontoinformation"
-            verbose_name_plural = "Betalnings- och kontoinformation"
+        verbose_name = "Betalnings- och kontoinformation"
+        verbose_name_plural = "Betalnings- och kontoinformation"
 
 
 class Audit_log(models.Model):
+    """
+    Model representing audit log entries.
+    """
     action = models.CharField("Aktion:", max_length=255, null=True, blank=True)
     details = models.TextField("Information:", null=True, blank=True)
     timestamp = models.DateTimeField("Tidslag:", auto_now_add=True, null=True, blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     class Meta:
-            verbose_name = "Revisionslogg"
-            verbose_name_plural = "Revisionslogg"
+        verbose_name = "Revisionslogg"
+        verbose_name_plural = "Revisionslogg"

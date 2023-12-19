@@ -10,3 +10,16 @@ class Report(models.Model):
 
     def __str__(self):
         return f"Report for {self.project.project_name} generated on {self.generated_date}"
+
+    def __doc__(self):
+        """
+        A model representing a report.
+
+        Attributes:
+            report_data (FileField): The file field for the report data.
+            generated_date (DateTimeField): The date and time when the report was generated.
+            project (ForeignKey): The foreign key to the project associated with the report.
+
+        Methods:
+            __str__(): Returns a string representation of the report.
+        """

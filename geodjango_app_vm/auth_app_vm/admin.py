@@ -24,9 +24,30 @@ class AuditInline(admin.StackedInline):
     extra = 0
 
 class CustomUserAdmin(UserAdmin):
+    """
+    Admin class for managing custom user model.
+
+    This class extends the UserAdmin class and provides additional functionality
+    for managing custom user model in the Django admin interface.
+    """
+
     inlines = (UserAdditionalInline, UserPaymentInline, AuditInline)
 
     def get_inline_instances(self, request, obj=None):
+        """
+        Return the inline instances for the admin interface.
+
+        This method overrides the get_inline_instances method of the UserAdmin class
+        and adds additional logic to include or exclude certain inlines based on the
+        user's account type.
+
+        Args:
+            request: The current request.
+            obj: The user object being edited.
+
+        Returns:
+            A list of inline instances to be displayed in the admin interface.
+        """
         inlines = super(CustomUserAdmin, self).get_inline_instances(request, obj)
         if obj is None:
             return inlines

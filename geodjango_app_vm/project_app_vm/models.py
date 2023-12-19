@@ -13,7 +13,21 @@ class Project(models.Model):
         return self.project_name
 
 class GISData(models.Model):
-    # Common fields for all GIS data models
+    """
+    Represents GIS data with common fields for all GIS data models.
+
+    Attributes:
+        name (str): The name of the GIS data.
+        description (str): The description of the GIS data.
+        start_date (date): The start date of the GIS data.
+        end_date (date): The end date of the GIS data.
+        status (str): The status of the GIS data.
+        accuracy (Decimal): The accuracy of the GIS data.
+        image_url (str): The URL of the image associated with the GIS data.
+        notes (str): Additional notes about the GIS data.
+        project (Project): The project associated with the GIS data.
+    """
+
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
     start_date = models.DateField(blank=True, null=True)

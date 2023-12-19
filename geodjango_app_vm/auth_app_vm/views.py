@@ -92,6 +92,12 @@ class UserPaymentCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class UserDeleteView(APIView):
+    """
+    View for deleting a user account.
+
+    Only authenticated users are allowed to access this view.
+    """
+
     permission_classes = [IsAuthenticated]
 
     def delete(self, request, user_id=None):

@@ -113,6 +113,15 @@ class AggregatedDataViewHav(APIView):
         return Response(data)
     
 class AggregatedDataViewAll(APIView):
+    """
+    A view that aggregates data from multiple categories and returns the aggregated data.
+
+    Methods:
+    - get_other_data: Fetches and serializes data for each model in the 'Other' category.
+    - get_mark_data: Fetches and serializes data for each Mark model.
+    - get_sotvatten_data: Fetches and serializes data for each Sotvatten model.
+    - get_hav_data: Fetches and serializes data for each Hav model.
+    """
     def get(self, request, format=None):
         data = {}
 
@@ -125,7 +134,12 @@ class AggregatedDataViewAll(APIView):
         return Response(data)
 
     def get_other_data(self):
-        # Fetch and serialize data for each model in 'Other' category
+        """
+        Fetches and serializes data for each model in the 'Other' category.
+
+        Returns:
+        A dictionary containing the serialized data for each model in the 'Other' category.
+        """
         other_data = {
             'group_naturvardestrad': Group_naturvardestradSerializer(Group_naturvardestrad.objects.all(), many=True).data,
             'gamla_grovatrad_haltrad': Gamla_grovatrad_haltradSerializer(Gamla_grovatrad_haltrad.objects.all(), many=True).data,
@@ -162,7 +176,12 @@ class AggregatedDataViewAll(APIView):
         return other_data
 
     def get_mark_data(self):
-        # Fetch and serialize data for each Mark model
+        """
+        Fetches and serializes data for each Mark model.
+
+        Returns:
+        A dictionary containing the serialized data for each Mark model.
+        """
         mark_data = {
             'ecosystem_category_mark_nat': Ecosystem_category_mark_natSerializer(Ecosystem_category_mark_nat.objects.all(), many=True).data,
             'kalfjall': KalfjallSerializer(Kalfjall.objects.all(), many=True).data,
@@ -177,7 +196,12 @@ class AggregatedDataViewAll(APIView):
         return mark_data
 
     def get_sotvatten_data(self):
-        # Fetch and serialize data for each Sotvatten model
+        """
+        Fetches and serializes data for each Sotvatten model.
+
+        Returns:
+        A dictionary containing the serialized data for each Sotvatten model.
+        """
         sotvatten_data = {
             'ecosystem_category_sotv_nat': Ecosystem_category_sotv_natSerializer(Ecosystem_category_sotv_nat.objects.all(), many=True).data,
             'sjo': SjoSerializer(Sjo.objects.all(), many=True).data,
@@ -189,7 +213,12 @@ class AggregatedDataViewAll(APIView):
         return sotvatten_data
 
     def get_hav_data(self):
-        # Fetch and serialize data for each Hav model
+        """
+        Fetches and serializes data for each Hav model.
+
+        Returns:
+        A dictionary containing the serialized data for each Hav model.
+        """
         hav_data = {
             'ecosystem_category_hav_nat': Ecosystem_category_hav_natSerializer(Ecosystem_category_hav_nat.objects.all(), many=True).data,
             'marint_ostersjon': Marint_ostersjonSerializer(Marint_ostersjon.objects.all(), many=True).data,

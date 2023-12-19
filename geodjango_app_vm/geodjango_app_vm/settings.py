@@ -1,3 +1,14 @@
+"""
+Django settings for the GeoDjango application.
+
+This file contains the configuration settings for the GeoDjango application.
+It includes settings related to security, database, authentication, middleware,
+internationalization, static files, and more.
+
+For more information on Django settings, visit:
+https://docs.djangoproject.com/en/4.2/topics/settings/
+"""
+
 from pathlib import Path
 from datetime import timedelta
 
@@ -10,7 +21,10 @@ SECRET_KEY = "django-insecure-1tiw*jt!73vryohvmrd&4zbheg-4=ot1q=tf4-!cr5#tq9fi1_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# Path to GDAL library
 GDAL_LIBRARY_PATH = 'C:\\OSGeo4W\\bin\\gdal308.dll'  # Update the path and file name as per your GDAL installation
+
+# Path to GEOS library
 GEOS_LIBRARY_PATH = 'C:\\OSGeo4W\\bin\\geos_c.dll'  # Update the path and file name as per your GEOS installation
 
 ALLOWED_HOSTS = []
@@ -18,7 +32,6 @@ ALLOWED_HOSTS = []
 APPEND_SLASH=False 
 
 TEST_RUNNER = 'geodjango_app_vm.custom_test_runner.CustomTestRunner'
-
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -71,8 +84,6 @@ MIDDLEWARE = [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
-# DEBUG_TOOLBAR_PATCH_SETTINGS = False
-
 INTERNAL_IPS = [
     '127.0.0.1',
     #'192.168.0.1'
@@ -81,8 +92,6 @@ INTERNAL_IPS = [
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
 ]
-
-
 
 ROOT_URLCONF = "geodjango_app_vm.urls"
 
@@ -104,10 +113,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "geodjango_app_vm.wsgi.application"
 
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
 
 DATABASES = {
     'default': {
@@ -119,7 +126,6 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -139,7 +145,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -152,7 +157,6 @@ TIME_ZONE = 'Europe/Stockholm'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/

@@ -8,6 +8,14 @@ class ProjectListCreateView(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
 class ProjectDetailView(generics.RetrieveUpdateDestroyAPIView):
+    """
+    A view for retrieving, updating, and deleting a project.
+
+    This view requires authentication and uses the ProjectSerializer
+    to serialize the project data. It also prefetches related GIS data
+    (polygon_data, line_data, and point_data) to optimize performance.
+    """
+
     serializer_class = ProjectSerializer
     permission_classes = [permissions.IsAuthenticated]
 

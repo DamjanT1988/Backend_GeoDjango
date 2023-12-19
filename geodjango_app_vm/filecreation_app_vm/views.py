@@ -28,6 +28,22 @@ class GeoJSONAPIView(APIView):
 
 
 def download_shapefile(request, data_id):
+    """
+    Downloads a shapefile based on the given data_id.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        data_id (int): The ID of the GeospatialData object.
+
+    Returns:
+        HttpResponse: The HTTP response object containing the shapefile as a zip file.
+    """
+    data = GeospatialData.objects.get(id=data_id)
+    geojson = data.geom.geojson
+    geos_geom = GEOSGeometry(geojson)
+
+    # Rest of the code...
+def download_shapefile(request, data_id):
     data = GeospatialData.objects.get(id=data_id)
     geojson = data.geom.geojson
     geos_geom = GEOSGeometry(geojson)

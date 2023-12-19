@@ -7,6 +7,9 @@ class SpeciesCentralDatabankSerializer(serializers.ModelSerializer):
         fields = ['taxon_id', 'species_name_common', 'latin_name', 'species_data', 'last_update_date', 'source']
 
 class SpeciesUserDatabankSerializer(serializers.ModelSerializer):
+    """
+    Serializer for SpeciesUserDatabank model.
+    """
     class Meta:
         model = SpeciesUserDatabank
         fields = ['taxon_id', 'species_name_common', 'latin_name', 'species_data', 'last_update_date', 'source', 'user']

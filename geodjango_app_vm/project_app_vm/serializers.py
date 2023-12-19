@@ -25,6 +25,18 @@ class PointDataSerializer(GeoFeatureModelSerializer):
 
 
 class ProjectSerializer(serializers.ModelSerializer):
+    """
+    Serializer for the Project model.
+
+    This serializer is responsible for serializing and deserializing Project instances.
+    It also handles the creation and updating of related GIS data.
+
+    Attributes:
+        polygon_data (PolygonDataSerializer): Serializer for polygon data.
+        line_data (LineDataSerializer): Serializer for line data.
+        point_data (PointDataSerializer): Serializer for point data.
+    """
+
     polygon_data = PolygonDataSerializer(many=True, required=False)
     line_data = LineDataSerializer(many=True, required=False)
     point_data = PointDataSerializer(many=True, required=False)
@@ -34,6 +46,15 @@ class ProjectSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def create(self, validated_data):
+        """
+        Create a new Project instance.
+
+        Args:
+            validated_data (dict): Validated data for the Project instance.
+
+        Returns:
+            Project: The created Project instance.
+        """
         # Extract GIS data from validated data
         polygon_data = validated_data.pop('polygon_data', [])
         line_data = validated_data.pop('line_data', [])
@@ -50,6 +71,16 @@ class ProjectSerializer(serializers.ModelSerializer):
         return project
 
     def update(self, instance, validated_data):
+        """
+        Update an existing Project instance.
+
+        Args:
+            instance (Project): The existing Project instance to be updated.
+            validated_data (dict): Validated data for the update.
+
+        Returns:
+            Project: The updated Project instance.
+        """
         # Extract GIS data from validated data
         polygon_data = validated_data.pop('polygon_data', None)
         line_data = validated_data.pop('line_data', None)

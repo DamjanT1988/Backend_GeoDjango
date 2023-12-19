@@ -2,6 +2,15 @@ import requests
 from .models import SpeciesCentralDatabank
 
 def fetch_and_save_species_data(api_url):
+    """
+    Fetches species data from the specified API URL and saves it to the SpeciesCentralDatabank model.
+
+    Args:
+        api_url (str): The URL of the API to fetch species data from.
+
+    Returns:
+        bool: True if the species data was fetched and saved successfully, False otherwise.
+    """
     headers = {
         'Ocp-Apim-Subscription-Key': 'd0e4154247e34467a94d8a97183354ec'
     }
