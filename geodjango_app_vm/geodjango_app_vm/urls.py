@@ -20,7 +20,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('', home, name='home'), 
     #fetch user
-    path('api/user/create', CreateUserView.as_view(), name='create_user'),
+    path('api/user/create/', CreateUserView.as_view(), name='create_user'),
     path('api/user/login/', LoginView.as_view(), name='token_obtain_pair'),
     path('api/user/logout/', LogoutView.as_view(), name='logout'),
     path('api/user/info/', UserRetrieveUpdateView.as_view(), name='user-info'), 

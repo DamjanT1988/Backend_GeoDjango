@@ -3,6 +3,7 @@ __pycache__/
 /geodjango_app_vm/geodjango_app_vm/tests/test_reports
 /X_DEV_FILES
 /X_TRASH
+/X_NOTES
 #.env
 #/venv
 # /geodjango_app_vm/settings.py

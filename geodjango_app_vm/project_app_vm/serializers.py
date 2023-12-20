@@ -101,3 +101,17 @@ class ProjectSerializer(serializers.ModelSerializer):
         # Repeat similar logic for line_data and point_data
         return instance
 
+    def delete(self, instance):
+        """
+        Delete an existing Project instance along with its related GIS data.
+
+        Args:
+            instance (Project): The Project instance to be deleted.
+        """
+        # Delete related GIS data
+        PolygonData.objects.filter(project=instance).delete()
+        LineData.objects.filter(project=instance).delete()
+        PointData.objects.filter(project=instance).delete()
+
+        # Delete the project instance
+        instance.delete()
