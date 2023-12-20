@@ -101,30 +101,3 @@ class ProjectSerializer(serializers.ModelSerializer):
         # Repeat similar logic for line_data and point_data
         return instance
 
-"""
-class ProjectSerializer(serializers.ModelSerializer):
-    polygon_data = PolygonDataSerializer(many=True, required=False)
-    line_data = LineDataSerializer(many=True, required=False)
-    point_data = PointDataSerializer(many=True, required=False)
-
-    class Meta:
-        model = Project
-        fields = ['id', 'project_name', 'description', 'creation_date', 'last_update_date', 'user', 'polygon_data', 'line_data', 'point_data']
-
-    def create(self, validated_data):
-        polygon_data = validated_data.pop('polygon_data', [])
-        line_data = validated_data.pop('line_data', [])
-        point_data = validated_data.pop('point_data', [])
-        project = Project.objects.create(**validated_data)
-
-        for poly_data in polygon_data:
-            PolygonData.objects.create(project=project, **poly_data)
-
-        for line in line_data:
-            LineData.objects.create(project=project, **line)
-
-        for point in point_data:
-            PointData.objects.create(project=project, **point)
-
-        return project
-"""
