@@ -7,13 +7,7 @@ from filecreation_app_vm.serializers import GeospatialDataSerializer
 from django.contrib.gis.gdal import DataSource
 from fiona.crs import from_epsg
 from django.contrib.gis.geos import GEOSGeometry
-import zipfile
-import io
-import fiona
-import tempfile
-import shutil
-import json
-import os
+import zipfile, io, fiona, tempfile, shutil, json, os
 
 
 class GeoJSONAPIView(APIView):
@@ -25,7 +19,6 @@ class GeoJSONAPIView(APIView):
             serializer.save()  # Saves the GeoJSON data into the database
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
-
 
 def download_shapefile(request, data_id):
     """
@@ -97,7 +90,6 @@ def download_shapefile(request, data_id):
 
     return response
 
-
 def download_geopackfile(request, data_id):
     # Fetch the data from the database
     data = GeospatialData.objects.get(id=data_id)
@@ -142,8 +134,6 @@ def download_geopackfile(request, data_id):
     os.rmdir(temp_dir)
 
     return response
-
-
 
 def download_gmlfile(request, data_id):
     data = GeospatialData.objects.get(id=data_id)
