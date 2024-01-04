@@ -8,6 +8,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated
 from auth_app_vm.serializers import *
 from django.contrib.auth import authenticate
+import random
 
 """
 # Allow in production
@@ -26,10 +27,22 @@ def check_request_origin(request):
         
 class CreateUserView(APIView):
     def post(self, request):
-        # Allow in production
-        #if not check_request_origin(request):
-        #    return JsonResponse({'error': 'Invalid origin'}, status=403)
-        serializer = UserCreationSerializer(data=request.data)
+        data = request.data
+
+        # Check if username is provided and if it's blank
+        if 'username' in data and not data['username']:
+            is_unique = False
+            while not is_unique:
+                random_number = random.randint(10000, 99999)  # Generate a random five-digit number
+                new_username = f'Användare{random_number}'
+                
+                # Check if any user already has this username
+                if not User.objects.filter(username=new_username).exists():
+                    is_unique = True  # If the username is unique, exit the loop
+
+            data['username'] = new_username  # Assign the unique username
+
+        serializer = UserCreationSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
