@@ -59,8 +59,17 @@ class UserCreationSerializer(serializers.ModelSerializer):
         user_additional_data = validated_data.pop('user_additional', None)
         user_additional_instance = getattr(instance, 'user_additional', None)
 
-        instance = super(UserCreationSerializer, self).update(instance, validated_data)
+        # Check if 'password' is in the validated_data and update if present
+        password = validated_data.pop('password', None)
+        if password is not None:
+            instance.set_password(password)
 
+        # Update the rest of the fields
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+        instance.save()
+
+        # Handle the user_additional data
         if user_additional_data is not None:
             # Update or create the User_additional instance
             if user_additional_instance:
