@@ -7,7 +7,7 @@ from auth_app_vm.models import *
 class UserAdditionalSerializer(serializers.ModelSerializer):
     class Meta:
         model = User_additional
-        fields = ['organization_name', 'role', 'job_title', 'department', 'phone_number']
+        fields = ['organization_name', 'organization_number', 'role', 'job_title', 'department', 'phone_number']
 
 class UserCreationSerializer(serializers.ModelSerializer):
     user_additional = UserAdditionalSerializer(required=False)
