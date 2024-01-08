@@ -3,10 +3,17 @@ from .models import Project
 from .serializers import ProjectSerializer
 
 class ProjectListCreateView(generics.ListCreateAPIView):
-    queryset = Project.objects.all()
     serializer_class = ProjectSerializer
     permission_classes = [permissions.IsAuthenticated]
 
+    def get_queryset(self):
+        # Return only the projects for the current user
+        return Project.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        # Override this method to add user to the project upon creation
+        serializer.save(user=self.request.user)
+        
 class ProjectDetailView(generics.RetrieveUpdateDestroyAPIView):
     """
     A view for retrieving, updating, and deleting a project.
