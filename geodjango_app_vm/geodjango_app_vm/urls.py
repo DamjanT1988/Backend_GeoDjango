@@ -24,7 +24,8 @@ urlpatterns = [
     path('api/user/login/', LoginView.as_view(), name='token_obtain_pair'),
     path('api/user/logout/', LogoutView.as_view(), name='logout'),
     path('api/user/info/', UserRetrieveUpdateView.as_view(), name='user-info'), 
-    path('api/user/payment/', UserPaymentCreateView.as_view(), name='create-payment'),
+    path('api/user/payment/create/', UserPaymentCreateView.as_view(), name='create-payment'),
+    path('api/user/payment/info/', UserPaymentView.as_view(), name='user-payment'),
     path('api/user/delete/<int:user_id>/', UserDeleteView.as_view(), name='delete-user'),
     #fetch species
     path('api/species/', SpeciesCentralDatabankList.as_view(), name='species-list'), 

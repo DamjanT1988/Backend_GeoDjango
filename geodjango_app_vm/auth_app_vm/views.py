@@ -96,14 +96,6 @@ class UserCreateView(generics.CreateAPIView):
     serializer_class = UserCreationSerializer
     permission_classes = [permissions.AllowAny]  # Or [permissions.IsAuthenticated] based on your requirements
 
-class UserPaymentCreateView(APIView):
-    def post(self, request):
-        serializer = UserPaymentSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 class UserDeleteView(APIView):
     """
     View for deleting a user account.
@@ -132,3 +124,38 @@ class UserDeleteView(APIView):
             return Response({'error': 'User not found.'}, status=status.HTTP_404_NOT_FOUND)
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+class UserPaymentCreateView(APIView):
+    def post(self, request):
+        serializer = UserPaymentSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class UserPaymentView(APIView):
+    # Ensure that only authenticated users can access this view
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, format=None):
+        # Assuming you have a relation from user to payment, and one user has one payment info
+        user_payment = User_payment.objects.filter(user=request.user).first()
+        serializer = UserPaymentSerializer(user_payment)
+        return Response(serializer.data)
+    
+    def put(self, request, format=None):
+        try:
+            user_payment = User_payment.objects.get(user=request.user)
+            serializer = UserPaymentSerializer(user_payment, data=request.data)
+
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except User_payment.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        

@@ -88,3 +88,5 @@ class UserPaymentSerializer(serializers.ModelSerializer):
                   'payment_price', 'payment_invoice_number', 'payment_invoice_date', 
                   'payment_invoice_due_date', 'payment_email', 'payment_adress', 
                   'payment_telephone', 'payment_reference', 'payment_comment']
+        
+
