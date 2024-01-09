@@ -2,6 +2,7 @@ from rest_framework import serializers
 from rest_framework_gis.serializers import GeoFeatureModelSerializer
 from project_app_vm.models import Project, PolygonData, LineData, PointData
 
+
 class PolygonDataSerializer(GeoFeatureModelSerializer):
     class Meta:
         model = PolygonData
