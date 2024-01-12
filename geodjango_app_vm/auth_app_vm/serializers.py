@@ -48,15 +48,14 @@ class UserCreationSerializer(serializers.ModelSerializer):
         user_payment_instance = getattr(instance, 'user_payment', None)
 
         # Check if 'password' is in the validated_data and update if present and not blank
-        password = validated_data.get('password', None)
+        password = validated_data.pop('password', None)
         if password is not None and password != '':
             instance.set_password(password)
-            validated_data.pop('password')
 
         # Update the rest of the fields
         for attr, value in validated_data.items():
             setattr(instance, attr, value)
-            instance.save()
+        instance.save()
 
         # Handle the user_additional data
         if user_additional_data is not None:
