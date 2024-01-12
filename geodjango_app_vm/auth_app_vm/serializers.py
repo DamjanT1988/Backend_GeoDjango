@@ -40,3 +40,42 @@ class UserCreationSerializer(serializers.ModelSerializer):
             User_payment.objects.create(user=user, **user_payment_data)
 
         return user
+    
+    def update(self, instance, validated_data):
+        user_additional_data = validated_data.pop('user_additional', None)
+        user_payment_data = validated_data.pop('user_payment', None)
+        user_additional_instance = getattr(instance, 'user_additional', None)
+        user_payment_instance = getattr(instance, 'user_payment', None)
+
+        # Check if 'password' is in the validated_data and update if present and not blank
+        password = validated_data.get('password', None)
+        if password is not None and password != '':
+            instance.set_password(password)
+            validated_data.pop('password')
+
+        # Update the rest of the fields
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+            instance.save()
+
+        # Handle the user_additional data
+        if user_additional_data is not None:
+            # Update or create the User_additional instance
+            if user_additional_instance:
+                for attr, value in user_additional_data.items():
+                    setattr(user_additional_instance, attr, value)
+                user_additional_instance.save()
+            else:
+                User_additional.objects.create(user=instance, **user_additional_data)
+
+        # Handle the user_payment data
+        if user_payment_data is not None:
+            # Update or create the User_payment instance
+            if user_payment_instance:
+                for attr, value in user_payment_data.items():
+                    setattr(user_payment_instance, attr, value)
+                user_payment_instance.save()
+            else:
+                User_payment.objects.create(user=instance, **user_payment_data)
+
+        return instance
