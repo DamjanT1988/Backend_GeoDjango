@@ -28,6 +28,7 @@ urlpatterns = [
     path('api/user/payment/create/', UserPaymentCreateView.as_view(), name='create-payment'),
     path('api/user/payment/info/', UserPaymentView.as_view(), name='user-payment'),
     path('api/user/delete/<int:user_id>/', UserDeleteView.as_view(), name='delete-user'),
+    path('api/user/validate/', PasswordValidationView.as_view(), name='validate-password'),
     #fetch species
     path('api/species/', SpeciesCentralDatabankList.as_view(), name='species-list'), 
     path('api/species/user/', SpeciesUserDatabankList.as_view(), name='species-list'), 

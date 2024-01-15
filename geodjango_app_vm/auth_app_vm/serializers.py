@@ -1,6 +1,7 @@
 # auth_app_vm/serializers.py
 
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
 from rest_framework import serializers
 from auth_app_vm.models import *
 
@@ -78,3 +79,13 @@ class UserCreationSerializer(serializers.ModelSerializer):
                 User_payment.objects.create(user=instance, **user_payment_data)
 
         return instance
+    
+class PasswordValidationSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField()
+
+    def validate(self, data):
+        user = authenticate(username=data['username'], password=data['password'])
+        if user:
+            return data
+        raise serializers.ValidationError("Invalid password.")

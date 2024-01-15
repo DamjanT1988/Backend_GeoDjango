@@ -126,6 +126,14 @@ class UserDeleteView(APIView):
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 
+class PasswordValidationView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        serializer = PasswordValidationSerializer(data=request.data)
+        if serializer.is_valid():
+            return Response({'message': 'Password is valid'}, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class UserPaymentCreateView(APIView):
     def post(self, request):
