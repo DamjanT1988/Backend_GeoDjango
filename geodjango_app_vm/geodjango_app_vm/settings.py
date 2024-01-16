@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 
 from pathlib import Path
 from datetime import timedelta
+import os
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,6 +22,9 @@ SECRET_KEY = "django-insecure-1tiw*jt!73vryohvmrd&4zbheg-4=ot1q=tf4-!cr5#tq9fi1_
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 # Path to GDAL library
 GDAL_LIBRARY_PATH = 'C:\\OSGeo4W\\bin\\gdal308.dll'  # Update the path and file name as per your GDAL installation
@@ -85,13 +90,13 @@ MIDDLEWARE = [
 ]
 
 INTERNAL_IPS = [
-    '127.0.0.1',
+    #'127.0.0.1',
     #'192.168.0.1'
 ]
 
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
-]
+    'http://localhost:8000',]
 
 ROOT_URLCONF = "geodjango_app_vm.urls"
 

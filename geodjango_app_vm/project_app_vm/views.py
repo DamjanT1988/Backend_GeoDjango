@@ -1,10 +1,32 @@
+import os, json
 from rest_framework import generics, permissions, status
+from django.http import JsonResponse, HttpResponse
+from django.conf import settings
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from project_app_vm.models import Project, PolygonData, LineData, PointData
 from project_app_vm.serializers import ProjectSerializer, PolygonDataSerializer, LineDataSerializer, PointDataSerializer
 
+@api_view(['POST'])
+def save_geojson(request, userID, projectID):
+    file_path = os.path.join(settings.MEDIA_ROOT, f'{userID}/{projectID}/file.geojson')
+    os.makedirs(os.path.dirname(file_path), exist_ok=True)
+    with open(file_path, 'w') as file:
+        json.dump(request.data, file)
+    return JsonResponse({"status": "success"})
 
+
+@api_view(['GET'])
+def get_geojson(request, userID, projectID):
+    file_path = os.path.join(settings.MEDIA_ROOT, f'{userID}/{projectID}/file.geojson')
+    if not os.path.exists(file_path):
+        return JsonResponse({"type": "FeatureCollection", "features": []})
+    else:
+        with open(file_path, 'r') as file:
+            data = json.load(file)
+            return JsonResponse(data)
+
+"""
 @api_view(['POST'])
 def add_polygon_data(request, project_id):
     try:
@@ -44,7 +66,7 @@ def add_point_data(request, project_id):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
+"""
 
 
 class ProjectListCreateView(generics.ListCreateAPIView):

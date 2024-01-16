@@ -16,6 +16,7 @@ from survey_app_vm.views import *
 from filecreation_app_vm.views import *
 from project_app_vm import views
 import debug_toolbar
+from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -35,9 +36,12 @@ urlpatterns = [
     #fetch projects
     path('api/projects/', ProjectListCreateView.as_view(), name='project-list'),
     path('api/projects/<int:pk>/', ProjectDetailView.as_view(), name='project-detail'),
-    path('api/projects/<int:project_id>/add_polygon/', views.add_polygon_data, name='add_polygon_data'),
-    path('api/projects/<int:project_id>/add_line/', views.add_line_data, name='add_line_data'),
-    path('api/projects/<int:project_id>/add_point/', views.add_point_data, name='add_point_data'),
+    #path('api/projects/<int:project_id>/add_polygon/', views.add_polygon_data, name='add_polygon_data'),
+    #path('api/projects/<int:project_id>/add_line/', views.add_line_data, name='add_line_data'),
+    #path('api/projects/<int:project_id>/add_point/', views.add_point_data, name='add_point_data'),
+    #create files
+    path('api/projects/get/<str:userID>/<str:projectID>/file', views.get_geojson, name='get_geojson'),
+    path('api/projects/post/<str:userID>/<str:projectID>/file', views.save_geojson, name='save_geojson'),
     #fecth reports
     path('api/reports/', ReportList.as_view(), name='report-list'), 
     path('api/reports/<int:pk>/', ReportDetail.as_view(), name='report-detail'),
@@ -57,7 +61,8 @@ urlpatterns = [
     path('download/geopackfile/<int:data_id>/', download_geopackfile, name='download_geopackfile'),
     path('download/gmlfile/<int:data_id>/', download_gmlfile, name='download_gmlfile'),
     path('download/geojsonfile/<int:data_id>/', download_geojsonfile, name='download_geojsonfile'),
-]
+] 
+
 
 urlpatterns += [
     path('__debug__/', include(debug_toolbar.urls)),
