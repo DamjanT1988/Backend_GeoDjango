@@ -15,7 +15,7 @@ class SpeciesUserDatabankSerializer(serializers.ModelSerializer):
         fields = ['taxon_id', 'species_name_common', 'latin_name', 'species_data', 'source', 'user']
         extra_kwargs = {
             'user': {'read_only': True},
-            'taxon_id': {'required': False},
+            'taxon_id': {'required': False, 'allow_null': True},
             'species_name_common': {'required': False},
             'latin_name': {'required': False},
             'species_data': {'required': False},
