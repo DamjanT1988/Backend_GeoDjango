@@ -8,6 +8,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated
 from auth_app_vm.serializers import *
 from django.contrib.auth import authenticate
+from datetime import timedelta
 import random
 
 """
@@ -59,12 +60,19 @@ class LoginView(APIView):
             user.last_login = timezone.now()
             user.save(update_fields=['last_login'])
 
-            # Create token
+ # Create token with extended life if 'remember_me' is True
+            remember_me = request.data.get('remember_me', False)
             refresh = RefreshToken.for_user(user)
+
+            if remember_me:
+                # Extend the token's lifetime, e.g., 30 days
+                refresh.set_exp(lifetime=timedelta(days=30))
+
             return Response({
                 'refresh': str(refresh),
                 'access': str(refresh.access_token),
             })
+        
         return Response({'error': 'Invalid Credentials'}, status=status.HTTP_401_UNAUTHORIZED)
 
 class LogoutView(APIView):
