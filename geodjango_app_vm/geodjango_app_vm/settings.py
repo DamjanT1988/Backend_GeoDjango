@@ -36,6 +36,15 @@ ALLOWED_HOSTS = []
 
 APPEND_SLASH=False 
 
+# Reset password
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.your-email-provider.com'  # e.g., 'smtp.gmail.com' for Gmail
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'your-email@example.com'
+EMAIL_HOST_PASSWORD = 'your-email-password'
+
+
 TEST_RUNNER = 'geodjango_app_vm.custom_test_runner.CustomTestRunner'
 
 REST_FRAMEWORK = {

@@ -25,6 +25,7 @@ urlpatterns = [
     path('api/user/create/', CreateUserView.as_view(), name='create_user'),
     path('api/user/login/', LoginView.as_view(), name='token_obtain_pair'),
     path('api/user/logout/', LogoutView.as_view(), name='logout'),
+    path('api/user/reset/', PasswordResetView.as_view(), name='reset-password'),
     path('api/user/info/', UserRetrieveUpdateView.as_view(), name='user-info'), 
     path('api/user/payment/create/', UserPaymentCreateView.as_view(), name='create-payment'),
     path('api/user/payment/info/', UserPaymentView.as_view(), name='user-payment'),

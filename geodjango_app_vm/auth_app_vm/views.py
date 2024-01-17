@@ -1,6 +1,14 @@
 from django.http import JsonResponse
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.core.mail import send_mail
+from django.conf import settings
+from django.contrib.auth.hashers import make_password
+import string
+import random
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes
 from rest_framework import generics, permissions, status, views, response
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -142,6 +150,32 @@ class PasswordValidationView(APIView):
         if serializer.is_valid():
             return Response({'message': 'Password is valid'}, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class PasswordResetView(APIView):
+    def post(self, request):
+        username = request.data.get('username', None)
+        if username:
+            try:
+                user = User.objects.get(username=username)
+
+                # Generate a random password
+                new_password = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
+                user.password = make_password(new_password)
+                user.save()
+
+                # Send an email with the new password
+                send_mail(
+                    subject='Your new password',
+                    message=f'Here is your new password: {new_password}',
+                    from_email=settings.DEFAULT_FROM_EMAIL,
+                    recipient_list=[user.email],
+                )
+                return Response({'message': 'New password has been sent to your email.'}, status=status.HTTP_200_OK)
+
+            except User.DoesNotExist:
+                return Response({'error': 'User not found.'}, status=status.HTTP_404_NOT_FOUND)
+        return Response({'error': 'Username not provided.'}, status=status.HTTP_400_BAD_REQUEST)
+
 
 class UserPaymentCreateView(APIView):
     def post(self, request):
