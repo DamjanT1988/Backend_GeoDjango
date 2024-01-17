@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.gis.db import models as gis_models
 from django.contrib.auth.models import User
+from django.db.models import JSONField
 
 class Project(models.Model):
     project_name = models.CharField(max_length=255)
@@ -11,6 +12,14 @@ class Project(models.Model):
 
     def __str__(self):
         return self.project_name
+
+class GeoJSONFile (models.Model):
+    file_name = models.CharField(max_length=255, blank=True, null=True)
+    geojson_data = JSONField(blank=True, null=True)  # Field to store GeoJSON data
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.file_name
 
 class GISData(models.Model):
     """

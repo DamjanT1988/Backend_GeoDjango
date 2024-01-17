@@ -4,20 +4,36 @@ from django.http import JsonResponse, HttpResponse
 from django.conf import settings
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from project_app_vm.models import Project, PolygonData, LineData, PointData
+from project_app_vm.models import Project, PolygonData, LineData, PointData, GeoJSONFile
 from project_app_vm.serializers import ProjectSerializer, PolygonDataSerializer, LineDataSerializer, PointDataSerializer
 
 @api_view(['POST'])
 def save_geojson(request, userID, projectID):
+    """
     file_path = os.path.join(settings.MEDIA_ROOT, f'{userID}/{projectID}/file.geojson')
     os.makedirs(os.path.dirname(file_path), exist_ok=True)
     with open(file_path, 'w') as file:
         json.dump(request.data, file)
     return JsonResponse({"status": "success"})
-
+    """
+    try:
+        gis_data = GeoJSONFile.objects.get(project_id=projectID)
+    except GeoJSONFile.DoesNotExist:
+        gis_data = GeoJSONFile(project_id=projectID)
+    
+    gis_data.geojson_data = request.data
+    gis_data.save()
+    return JsonResponse({"status": "success"})
 
 @api_view(['GET'])
 def get_geojson(request, userID, projectID):
+    try:
+        gis_data = GeoJSONFile.objects.get(project_id=projectID)
+        return JsonResponse(gis_data.geojson_data)
+    except GeoJSONFile.DoesNotExist:
+        return JsonResponse({"type": "FeatureCollection", "features": []})
+    
+    """
     file_path = os.path.join(settings.MEDIA_ROOT, f'{userID}/{projectID}/file.geojson')
     if not os.path.exists(file_path):
         return JsonResponse({"type": "FeatureCollection", "features": []})
@@ -25,6 +41,7 @@ def get_geojson(request, userID, projectID):
         with open(file_path, 'r') as file:
             data = json.load(file)
             return JsonResponse(data)
+    """
 
 """
 @api_view(['POST'])
