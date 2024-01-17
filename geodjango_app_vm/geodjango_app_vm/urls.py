@@ -34,6 +34,7 @@ urlpatterns = [
     #fetch species
     path('api/species/', SpeciesCentralDatabankList.as_view(), name='species-list'), 
     path('api/species/user/', SpeciesUserDatabankList.as_view(), name='species-list'), 
+    path('api/species/user/create/', SpeciesUserDatabankCreate.as_view(), name='species-user-create'),
     #fetch projects
     path('api/projects/', ProjectListCreateView.as_view(), name='project-list'),
     path('api/projects/<int:pk>/', ProjectDetailView.as_view(), name='project-detail'),

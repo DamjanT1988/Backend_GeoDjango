@@ -34,3 +34,11 @@ class SpeciesUserDatabankList(generics.ListAPIView):
         """
         user = self.request.user
         return SpeciesUserDatabank.objects.filter(user=user)
+
+class SpeciesUserDatabankCreate(generics.CreateAPIView):
+    queryset = SpeciesUserDatabank.objects.all()
+    serializer_class = SpeciesUserDatabankSerializer
+    permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)

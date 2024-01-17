@@ -12,4 +12,12 @@ class SpeciesUserDatabankSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = SpeciesUserDatabank
-        fields = ['taxon_id', 'species_name_common', 'latin_name', 'species_data', 'last_update_date', 'source', 'user']
+        fields = ['taxon_id', 'species_name_common', 'latin_name', 'species_data', 'source', 'user']
+        extra_kwargs = {
+            'user': {'read_only': True},
+            'taxon_id': {'required': False},
+            'species_name_common': {'required': False},
+            'latin_name': {'required': False},
+            'species_data': {'required': False},
+            'source': {'required': False}
+        }
