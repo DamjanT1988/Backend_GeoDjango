@@ -45,7 +45,23 @@ class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
         fields = '__all__'
-        read_only_fields = ('user',) 
+        read_only_fields = ('user',)
+        extra_kwargs = {
+            'user': {'read_only': True},
+            'project_name': {'required': False},
+            'project_description': {'required': False},
+            'reason': {'required': False},
+            'mapping_area_description': {'required': False},
+            'ordering_organization': {'required': False},
+            'object_version': {'required': False},
+            'project_identity': {'required': False},
+            'period_start': {'required': False},
+            'period_end': {'required': False},
+            'executing_organization': {'required': False},
+            'version_start': {'required': False},
+            'version_end': {'required': False},
+            # Add similar lines for any other fields
+        } 
 
     def create(self, validated_data):
         """
