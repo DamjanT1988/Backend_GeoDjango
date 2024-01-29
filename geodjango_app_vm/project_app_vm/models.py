@@ -4,6 +4,34 @@ from django.contrib.auth.models import User
 from django.db.models import JSONField
 import uuid
 
+class MappingInformation(models.Model):
+    limitations_uncertainties = models.TextField('Begränsningar och osäkerheter', blank=True)
+    methods_scope = models.TextField('Metoder och omfattning', blank=True)
+    minimum_mapping_unit = models.TextField('Minsta karteringsenhet', blank=False)
+    mapping_type = models.CharField('Typ av kartläggning', max_length=255, blank=False)
+
+    def __str__(self):
+        return f"Mapping Information: {self.mapping_type}"
+
+class ReferenceMaterial(models.Model):
+    date = models.DateTimeField('Datum', blank=False)
+    source = models.CharField('Källa', max_length=255, blank=False)
+    object_identity = models.CharField('Objektidentitet', max_length=255, blank=False)
+    object_version = models.IntegerField('Objektversion', blank=False)
+    reference_date = models.DateTimeField('Datum', blank=True, null=True)
+    event_date = models.DateTimeField('Händelse', blank=True, null=True)
+    short_name = models.CharField('Kortnamn', max_length=255, blank=True)
+    name = models.CharField('Namn', max_length=255, blank=True)
+    reference_identity = models.UUIDField('Identitet', default=uuid.uuid4, editable=False, blank=True)
+    link = models.URLField('Länk', max_length=200, blank=True)
+    namespace = models.CharField('Namnrymd', max_length=255, blank=True)
+    specific_reference = models.TextField('Specifik referens', blank=True)
+    valid_from = models.DateTimeField('Version giltig från', blank=False)
+    valid_to = models.DateTimeField('Version giltig till', blank=False)
+
+    def __str__(self):
+        return f"Reference Material: {self.source} - {self.object_identity}"
+    
 
 class Project(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -34,35 +62,6 @@ class Project(models.Model):
 
     def __str__(self):
         return f"{self.project_name} - {self.project_identity}"
-    
-
-class MappingInformation(models.Model):
-    limitations_uncertainties = models.TextField('Begränsningar och osäkerheter', blank=True)
-    methods_scope = models.TextField('Metoder och omfattning', blank=True)
-    minimum_mapping_unit = models.TextField('Minsta karteringsenhet', blank=False)
-    mapping_type = models.CharField('Typ av kartläggning', max_length=255, blank=False)
-
-    def __str__(self):
-        return f"Mapping Information: {self.mapping_type}"
-
-class ReferenceMaterial(models.Model):
-    date = models.DateTimeField('Datum', blank=False)
-    source = models.CharField('Källa', max_length=255, blank=False)
-    object_identity = models.CharField('Objektidentitet', max_length=255, blank=False)
-    object_version = models.IntegerField('Objektversion', blank=False)
-    reference_date = models.DateTimeField('Datum', blank=True, null=True)
-    event_date = models.DateTimeField('Händelse', blank=True, null=True)
-    short_name = models.CharField('Kortnamn', max_length=255, blank=True)
-    name = models.CharField('Namn', max_length=255, blank=True)
-    reference_identity = models.UUIDField('Identitet', default=uuid.uuid4, editable=False, blank=True)
-    link = models.URLField('Länk', max_length=200, blank=True)
-    namespace = models.CharField('Namnrymd', max_length=255, blank=True)
-    specific_reference = models.TextField('Specifik referens', blank=True)
-    valid_from = models.DateTimeField('Version giltig från', blank=False)
-    valid_to = models.DateTimeField('Version giltig till', blank=False)
-
-    def __str__(self):
-        return f"Reference Material: {self.source} - {self.object_identity}"
 
 
 class GeoJSONFile (models.Model):
