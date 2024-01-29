@@ -4,26 +4,34 @@ from django.contrib.auth.models import User
 from django.db.models import JSONField
 
 class Project(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     project_name = models.CharField(max_length=255)
     description = models.TextField()
-    creation_date = models.DateTimeField(auto_now_add=True)
-    last_update_date = models.DateTimeField(auto_now=True)  # Use auto_now for last updated time
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-
-        # New fields based on the form data
     reason = models.CharField(max_length=255, blank=True, null=True)
     mapping_area_description = models.TextField(blank=True, null=True)
-    ordering_organization = models.CharField(max_length=255, blank=True, null=True)
-    object_version = models.CharField(max_length=50, blank=True, null=True)
+    
+    # Fields for the ordering organization
+    ordering_organization_name = models.CharField(max_length=255, blank=True, null=True)
+    ordering_organization_number = models.CharField(max_length=50, blank=True, null=True)
+    
+    # Fields for the executing organization
+    executing_organization_name = models.CharField(max_length=255, blank=True, null=True)
+    executing_organization_number = models.CharField(max_length=50, blank=True, null=True)
+    
+    object_version = models.IntegerField(blank=True, null=True)
     project_identity = models.CharField(max_length=255, blank=True, null=True)
+    
     period_start = models.DateField(blank=True, null=True)
     period_end = models.DateField(blank=True, null=True)
-    executing_organization = models.CharField(max_length=255, blank=True, null=True)
+    
     version_start = models.DateField(blank=True, null=True)
     version_end = models.DateField(blank=True, null=True)
 
+    creation_date = models.DateTimeField(auto_now_add=True)
+    last_update_date = models.DateTimeField(auto_now=True)
+
     def __str__(self):
-        return self.project_name
+        return f"{self.project_name} - {self.project_identity}"
 
 class GeoJSONFile (models.Model):
     file_name = models.CharField(max_length=255, blank=True, null=True)

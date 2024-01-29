@@ -37,31 +37,51 @@ class ProjectSerializer(serializers.ModelSerializer):
         line_data (LineDataSerializer): Serializer for line data.
         point_data (PointDataSerializer): Serializer for point data.
     """
-
+    '''
     polygon_data = PolygonDataSerializer(many=True, required=False)
     line_data = LineDataSerializer(many=True, required=False)
     point_data = PointDataSerializer(many=True, required=False)
+    '''
 
     class Meta:
         model = Project
-        fields = '__all__'
-        read_only_fields = ('user',)
+        fields = [
+            'id',
+            'user',
+            'project_name',
+            'description',
+            'reason',
+            'mapping_area_description',
+            'ordering_organization_name',
+            'ordering_organization_number',
+            'executing_organization_name',
+            'executing_organization_number',
+            'object_version',
+            'project_identity',
+            'period_start',
+            'period_end',
+            'version_start',
+            'version_end',
+            'creation_date',
+            'last_update_date',
+        ]
+        read_only_fields = ('user', 'creation_date', 'last_update_date')
         extra_kwargs = {
-            'user': {'read_only': True},
-            'project_name': {'required': False},
-            'project_description': {'required': False},
+            'project_name': {'required': True},
+            'description': {'required': True},
             'reason': {'required': False},
             'mapping_area_description': {'required': False},
-            'ordering_organization': {'required': False},
+            'ordering_organization_name': {'required': False},
+            'ordering_organization_number': {'required': False},
+            'executing_organization_name': {'required': False},
+            'executing_organization_number': {'required': False},
             'object_version': {'required': False},
             'project_identity': {'required': False},
             'period_start': {'required': False},
             'period_end': {'required': False},
-            'executing_organization': {'required': False},
             'version_start': {'required': False},
             'version_end': {'required': False},
-            # Add similar lines for any other fields
-        } 
+        }
 
     def create(self, validated_data):
         """
@@ -73,6 +93,7 @@ class ProjectSerializer(serializers.ModelSerializer):
         Returns:
             Project: The created Project instance.
         """
+
         # Extract GIS data from validated data
         polygon_data = validated_data.pop('polygon_data', [])
         line_data = validated_data.pop('line_data', [])
