@@ -53,6 +53,32 @@ class CreateUserView(APIView):
 
         serializer = UserCreationSerializer(data=data)
         if serializer.is_valid():
+            user = serializer.save()
+            
+            # Prepare email content
+            email_subject = 'Välkommer till NVVI-appen!'
+            email_body = f"""
+            Hej {user.first_name}!
+
+            Nedan är dina inloggningsuppgifter till NVVI-appen:
+            Användarnamn: {user.username}
+            E-mejl: {user.email}
+
+            Om ni behöver nytt lösenord besök inloggningsidan och klicka på "Glömt lösenord" så får ni det på er e-mejl.
+
+            Vänliga hälsningar,
+            Väg & Miljö
+            """
+
+            # Send email
+            send_mail(
+                subject=email_subject,
+                message=email_body,
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[user.email],
+            )
+
+
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
