@@ -4,6 +4,37 @@ from django.contrib.auth.models import User
 from django.db.models import JSONField
 import uuid
 
+class ProjectInformation(models.Model):
+    # Mandatory Fields
+    reason = models.TextField(verbose_name="Anledning")
+    mapping_area_description = models.TextField(verbose_name="Beskrivning av kartläggningsområde")
+    ordering_organization_name = models.CharField(max_length=255, verbose_name="Namn")
+    ordering_organization_number = models.CharField(max_length=50, verbose_name="Organisationsnummer")
+    object_identity = models.UUIDField(default=uuid.uuid4, editable=False, verbose_name="Objektidentitet")
+    object_version = models.IntegerField(verbose_name="Objektversion")
+    project_identity = models.CharField(max_length=255, verbose_name="Projektidentitet")
+
+    # Date Fields
+    date = models.DateTimeField(null=True, blank=True, verbose_name="Datum")
+    event_date = models.DateTimeField(null=True, blank=True, verbose_name="Händelse")
+    period_start = models.DateTimeField(null=True, blank=True, verbose_name="Från", help_text="Tidsperiod start")
+    period_end = models.DateTimeField(null=True, blank=True, verbose_name="Till", help_text="Tidsperiod slut")
+    version_valid_from = models.DateTimeField(verbose_name="Version giltig från")
+    version_valid_to = models.DateTimeField(null=True, blank=True, verbose_name="Version giltig till", help_text="Lämna tomt för senaste versionen")
+
+    # Optional Fields
+    short_name = models.CharField(max_length=255, null=True, blank=True, verbose_name="Kortnamn")
+    reference_identity = models.CharField(max_length=255, null=True, blank=True, verbose_name="Identitet")
+    link = models.URLField(max_length=200, null=True, blank=True, verbose_name="Länk")
+    namespace = models.CharField(max_length=255, null=True, blank=True, verbose_name="Namnrymd")
+    specific_reference = models.TextField(null=True, blank=True, verbose_name="Specifik referens")
+    summary_of_results = models.TextField(null=True, blank=True, verbose_name="Sammanfattning av resultat")
+    executing_organization_name = models.CharField(max_length=255, null=True, blank=True, verbose_name="Utförande organisation Namn")
+    executing_organization_number = models.CharField(max_length=50, null=True, blank=True, verbose_name="Organisationsnummer")
+
+    def __str__(self):
+        return f"{self.ordering_organization_name} - {self.project_identity}"
+
 class MappingInformation(models.Model):
     limitations_uncertainties = models.TextField('Begränsningar och osäkerheter', blank=True)
     methods_scope = models.TextField('Metoder och omfattning', blank=True)

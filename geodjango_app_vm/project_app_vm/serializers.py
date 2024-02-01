@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework_gis.serializers import GeoFeatureModelSerializer
-from project_app_vm.models import Project, PolygonData, LineData, PointData
+from project_app_vm.models import Project, PolygonData, LineData, PointData, ProjectInformation
 
 
 class PolygonDataSerializer(GeoFeatureModelSerializer):
@@ -24,8 +24,15 @@ class PointDataSerializer(GeoFeatureModelSerializer):
         fields = '__all__'
         read_only_fields = ('project',)
 
+class ProjectInformationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProjectInformation
+        fields = '__all__'
+
 
 class ProjectSerializer(serializers.ModelSerializer):
+    project_information = ProjectInformationSerializer(required=False)
+
     """
     Serializer for the Project model.
 
@@ -64,6 +71,7 @@ class ProjectSerializer(serializers.ModelSerializer):
             'version_end',
             'creation_date',
             'last_update_date',
+            'project_information',
         ]
         read_only_fields = ('user', 'creation_date', 'last_update_date')
         extra_kwargs = {
@@ -94,6 +102,11 @@ class ProjectSerializer(serializers.ModelSerializer):
             Project: The created Project instance.
         """
 
+        project_information_data = validated_data.pop('project_information', None)
+        project = Project.objects.create(**validated_data)
+        if project_information_data:
+            ProjectInformation.objects.create(project=project, **project_information_data)
+
         # Extract GIS data from validated data
         polygon_data = validated_data.pop('polygon_data', [])
         line_data = validated_data.pop('line_data', [])
@@ -120,6 +133,12 @@ class ProjectSerializer(serializers.ModelSerializer):
         Returns:
             Project: The updated Project instance.
         """
+
+        project_information_data = validated_data.pop('project_information', None)
+        # Update project instance fields...
+        if project_information_data:
+            ProjectInformation.objects.filter(project=instance).update(**project_information_data)
+
         # Extract GIS data from validated data
         polygon_data = validated_data.pop('polygon_data', None)
         line_data = validated_data.pop('line_data', None)
