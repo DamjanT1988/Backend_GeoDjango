@@ -44,6 +44,8 @@ urlpatterns = [
     #create files
     path('api/projects/get/<str:userID>/<str:projectID>/file', views.get_geojson, name='get_geojson'),
     path('api/projects/post/<str:userID>/<str:projectID>/file', views.save_geojson, name='save_geojson'),
+    path('api/projects/image/save/', views.save_project_image, name='save_project_image'),
+    path('api/projects/<int:project_id>/image/', views.get_project_image, name='get_project_image'),
     #fecth reports
     path('api/reports/', ReportList.as_view(), name='report-list'), 
     path('api/reports/<int:pk>/', ReportDetail.as_view(), name='report-detail'),
@@ -63,7 +65,7 @@ urlpatterns = [
     path('download/geopackfile/<int:data_id>/', download_geopackfile, name='download_geopackfile'),
     path('download/gmlfile/<int:data_id>/', download_gmlfile, name='download_gmlfile'),
     path('download/geojsonfile/<int:data_id>/', download_geojsonfile, name='download_geojsonfile'),
-] 
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 urlpatterns += [

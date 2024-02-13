@@ -4,8 +4,52 @@ from django.http import JsonResponse, HttpResponse
 from django.conf import settings
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from project_app_vm.models import Project, PolygonData, LineData, PointData, GeoJSONFile
+from project_app_vm.models import Project, PolygonData, LineData, PointData, GeoJSONFile, ProjectImage
 from project_app_vm.serializers import ProjectSerializer, PolygonDataSerializer, LineDataSerializer, PointDataSerializer
+from django.views.decorators.csrf import csrf_exempt
+from PIL import Image
+from io import BytesIO
+import base64
+from django.core.files.base import ContentFile
+from django.shortcuts import get_object_or_404
+
+@api_view(['POST'])
+def save_project_image(request):
+    data = json.loads(request.body)
+    project_id = data.get('projectId')
+    image_data = data.get('imageData')
+
+    try:
+        project = Project.objects.get(id=project_id)
+    except Project.DoesNotExist:
+        return Response({'error': 'Project not found'}, status=status.HTTP_404_NOT_FOUND)
+
+    format, imgstr = image_data.split(';base64,') 
+    ext = format.split('/')[-1]
+
+    image = Image.open(BytesIO(base64.b64decode(imgstr)))
+    temp_img = BytesIO()
+    image.save(temp_img, format=image.format)
+    temp_img.seek(0)
+
+    project_image = ProjectImage(project=project)
+    project_image.image.save(f"{project.project_name}.{ext}", ContentFile(temp_img.read()))
+    temp_img.close()
+
+    return Response({'status': 'success'}, status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def get_project_image(request, project_id):
+    # Get all ProjectImage instances associated with the given project ID
+    project_images = ProjectImage.objects.filter(project__id=project_id)
+    
+    if project_images:
+        image_urls = [request.build_absolute_uri(image.image.url) for image in project_images]
+        return JsonResponse({'images': image_urls}, status=200)
+    else:
+        # If no images are found, return a 404 response
+        return HttpResponse(status=404)
+
 
 @api_view(['POST'])
 def save_geojson(request, userID, projectID):

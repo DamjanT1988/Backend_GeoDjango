@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.gis.db import models as gis_models
 from django.contrib.auth.models import User
 from django.db.models import JSONField
+from django.utils.translation import gettext_lazy as _
 import uuid
 
 class ProjectInformation(models.Model):
@@ -94,6 +95,17 @@ class Project(models.Model):
     def __str__(self):
         return f"{self.project_name} - {self.project_identity}"
 
+class ProjectImage(models.Model):
+    project = models.ForeignKey(Project, related_name='images', on_delete=models.CASCADE, verbose_name=_("Project"))
+    image = models.ImageField(upload_to='project_images/', verbose_name=_("Image"))
+    caption = models.CharField(max_length=255, blank=True, verbose_name=_("Caption"))
+
+    def __str__(self):
+        return f"{self.project.project_name} - {self.caption[:20]}..." if self.caption else f"{self.project.project_name} - Image {self.id}"
+
+    class Meta:
+        verbose_name = _("Project Image")
+        verbose_name_plural = _("Project Images")
 
 class GeoJSONFile (models.Model):
     file_name = models.CharField(max_length=255, blank=True, null=True)
