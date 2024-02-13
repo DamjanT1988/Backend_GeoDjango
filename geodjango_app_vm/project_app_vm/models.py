@@ -99,6 +99,7 @@ class ProjectImage(models.Model):
     project = models.ForeignKey(Project, related_name='images', on_delete=models.CASCADE, verbose_name=_("Project"))
     image = models.ImageField(upload_to='project_images/', verbose_name=_("Image"))
     caption = models.CharField(max_length=255, blank=True, verbose_name=_("Caption"))
+    map_object_id = models.CharField(max_length=255, blank=True, verbose_name=_("Map Object ID"))
 
     def __str__(self):
         return f"{self.project.project_name} - {self.caption[:20]}..." if self.caption else f"{self.project.project_name} - Image {self.id}"

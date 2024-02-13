@@ -18,6 +18,7 @@ def save_project_image(request):
     data = json.loads(request.body)
     project_id = data.get('projectId')
     image_data = data.get('imageData')
+    map_object_id = data.get('mapObjectId', '')  # Get the map object ID from the request
 
     try:
         project = Project.objects.get(id=project_id)
@@ -32,8 +33,9 @@ def save_project_image(request):
     image.save(temp_img, format=image.format)
     temp_img.seek(0)
 
-    project_image = ProjectImage(project=project)
-    project_image.image.save(f"{project.project_name}.{ext}", ContentFile(temp_img.read()))
+    # Create a new ProjectImage instance with the map_object_id
+    project_image = ProjectImage(project=project, map_object_id=map_object_id)
+    project_image.image.save(f"{project.project_name}_{map_object_id}.{ext}", ContentFile(temp_img.read()))  # Include map_object_id in the filename if needed
     temp_img.close()
 
     return Response({'status': 'success'}, status=status.HTTP_200_OK)
@@ -43,13 +45,17 @@ def get_project_image(request, project_id):
     # Get all ProjectImage instances associated with the given project ID
     project_images = ProjectImage.objects.filter(project__id=project_id)
     
-    if project_images:
-        image_urls = [request.build_absolute_uri(image.image.url) for image in project_images]
-        return JsonResponse({'images': image_urls}, status=200)
+    if project_images.exists():
+        image_data = [{
+            'url': request.build_absolute_uri(image.image.url),
+            'caption': image.caption,
+            'mapObjectId': image.map_object_id  # Include map object ID in the response
+        } for image in project_images]
+
+        return JsonResponse({'images': image_data}, safe=False, status=status.HTTP_200_OK)
     else:
         # If no images are found, return a 404 response
-        return HttpResponse(status=404)
-
+        return HttpResponse(status=status.HTTP_404_NOT_FOUND)
 
 @api_view(['POST'])
 def save_geojson(request, userID, projectID):

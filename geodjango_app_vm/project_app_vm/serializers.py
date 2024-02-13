@@ -8,33 +8,6 @@ from PIL import Image
 from io import BytesIO
 import json
 
-@csrf_exempt
-def save_project_image(request):
-    data = json.loads(request.body)
-    project_id = data.get('projectId')  # Assuming you're sending projectId in your request
-    image_data = data.get('imageData')
-    format, imgstr = image_data.split(';base64,') 
-    ext = format.split('/')[-1]
-
-    # Find the project instance
-    project = Project.objects.get(id=project_id)
-
-    # Convert base64 to an image
-    image = Image.open(BytesIO(base64.b64decode(imgstr)))
-
-    # Save the image in an ImageField rather than as a file
-    temp_img = BytesIO()
-    image.save(temp_img, format=ext.upper())
-    temp_img.seek(0)
-
-    # Create a new ProjectImage instance and save it
-    project_image = ProjectImage(project=project)
-    project_image.image.save(f"{project.project_name}.{ext}", content=ContentFile(temp_img.read()))
-    temp_img.close()
-
-    return JsonResponse({'status': 'success'})
-
-
 class PolygonDataSerializer(GeoFeatureModelSerializer):
     class Meta:
         model = PolygonData
