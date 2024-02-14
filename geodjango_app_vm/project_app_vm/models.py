@@ -92,6 +92,8 @@ class Project(models.Model):
     creation_date = models.DateTimeField(auto_now_add=True)
     last_update_date = models.DateTimeField(auto_now=True)
 
+    saved_object_ids = JSONField(default=list, blank=True) 
+
     def __str__(self):
         return f"{self.project_name} - {self.project_identity}"
 

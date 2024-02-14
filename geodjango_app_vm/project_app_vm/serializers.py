@@ -77,6 +77,7 @@ class ProjectSerializer(serializers.ModelSerializer):
             'creation_date',
             'last_update_date',
             'project_information',
+            'saved_object_ids',
         ]
         read_only_fields = ('user', 'creation_date', 'last_update_date')
         extra_kwargs = {
@@ -94,6 +95,7 @@ class ProjectSerializer(serializers.ModelSerializer):
             'period_end': {'required': False},
             'version_start': {'required': False},
             'version_end': {'required': False},
+            'saved_object_ids': {'required': False}
         }
 
     def create(self, validated_data):
