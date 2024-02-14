@@ -4,7 +4,7 @@ __pycache__/
 /X_DEV_FILES
 /X_TRASH
 /X_NOTES
-/project_files
+project_files
 #.env
 #/venv
 # /geodjango_app_vm/settings.py

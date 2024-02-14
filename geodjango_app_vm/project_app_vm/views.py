@@ -47,6 +47,7 @@ def get_project_image(request, project_id):
     
     if project_images.exists():
         image_data = [{
+            'id': image.id,
             'url': request.build_absolute_uri(image.image.url),
             'caption': image.caption,
             'mapObjectId': image.map_object_id  # Include map object ID in the response
@@ -56,6 +57,31 @@ def get_project_image(request, project_id):
     else:
         # If no images are found, return a 404 response
         return HttpResponse(status=status.HTTP_404_NOT_FOUND)
+    
+@api_view(['DELETE'])
+def delete_project_image(request, image_id):
+    """
+    Delete an image from a project.
+
+    Parameters:
+    image_id (int): The ID of the image to be deleted.
+
+    Returns:
+    Response: A DRF Response object with a success status or an error message.
+    """
+    try:
+        # Attempt to retrieve the image by its ID
+        project_image = ProjectImage.objects.get(id=image_id)
+    except ProjectImage.DoesNotExist:
+        # If the image does not exist, return a 404 Not Found response
+        return Response({'error': 'Image not found'}, status=status.HTTP_404_NOT_FOUND)
+
+    # If the image exists, delete it
+    project_image.image.delete()  # This deletes the image file
+    project_image.delete()  # This deletes the database record
+
+    # Return a success response
+    return Response({'status': 'success'}, status=status.HTTP_204_NO_CONTENT)
 
 @api_view(['POST'])
 def save_geojson(request, userID, projectID):

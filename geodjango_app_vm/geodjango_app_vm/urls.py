@@ -46,6 +46,7 @@ urlpatterns = [
     path('api/projects/post/<str:userID>/<str:projectID>/file', views.save_geojson, name='save_geojson'),
     path('api/projects/image/save/', views.save_project_image, name='save_project_image'),
     path('api/projects/<int:project_id>/image/', views.get_project_image, name='get_project_image'),
+    path('api/projects/image/delete/<int:image_id>/', views.delete_project_image, name='delete_project_image'),
     #fecth reports
     path('api/reports/', ReportList.as_view(), name='report-list'), 
     path('api/reports/<int:pk>/', ReportDetail.as_view(), name='report-detail'),
