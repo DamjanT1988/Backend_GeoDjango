@@ -36,6 +36,9 @@ ALLOWED_HOSTS = []
 
 APPEND_SLASH=False 
 
+DATA_UPLOAD_MAX_MEMORY_SIZE = 110485760  # 100MB in bytes
+
+
 # Reset password
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.your-email-provider.com'  # e.g., 'smtp.gmail.com' for Gmail
