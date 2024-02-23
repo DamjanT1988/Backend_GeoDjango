@@ -18,6 +18,7 @@ def save_project_image(request):
     data = json.loads(request.body)
     project_id = data.get('projectId')
     image_data = data.get('imageData')
+    caption = data.get('caption', '')  # Get the caption from the request
     map_object_id = data.get('mapObjectId', '')  # Get the map object ID from the request
 
     try:
@@ -30,11 +31,11 @@ def save_project_image(request):
 
     image = Image.open(BytesIO(base64.b64decode(imgstr)))
     temp_img = BytesIO()
-    image.save(temp_img, format=image.format)
+    image.save(temp_img, format=ext)  # Use 'ext' instead of 'image.format' to ensure consistency with the file extension
     temp_img.seek(0)
 
-    # Create a new ProjectImage instance with the map_object_id
-    project_image = ProjectImage(project=project, map_object_id=map_object_id)
+    # Create a new ProjectImage instance with the map_object_id and caption
+    project_image = ProjectImage(project=project, map_object_id=map_object_id, caption=caption)  # Include the caption here
     project_image.image.save(f"{project.project_name}_{map_object_id}.{ext}", ContentFile(temp_img.read()))  # Include map_object_id in the filename if needed
     temp_img.close()
 
