@@ -5,13 +5,6 @@ from survey_app_vm.models_nature_sotvatten import *
 from survey_app_vm.models_nature_hav import *
 from django.contrib.gis.db import models as gis_models
 from django.urls import reverse
-import uuid
-from survey_app_vm.models_other import *  # Import all models from models_other.py
-from survey_app_vm.models_nature_mark import *
-from survey_app_vm.models_nature_sotvatten import *
-from survey_app_vm.models_nature_hav import *
-from django.contrib.gis.db import models as gis_models
-from django.urls import reverse
 
 class LandscapeArea(models.Model):
     image = models.ImageField(upload_to='landscape_images/', blank=True, null=True)  # For storing image files
