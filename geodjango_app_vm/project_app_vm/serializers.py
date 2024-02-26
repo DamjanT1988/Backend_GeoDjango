@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework_gis.serializers import GeoFeatureModelSerializer
-from project_app_vm.models import Project, PolygonData, LineData, PointData, ProjectInformation, ProjectImage
+from project_app_vm.models import Project, PolygonData, LineData, PointData, ProjectInformation, ProjectImage, ProjectKartering
 import base64
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -32,6 +32,11 @@ class PointDataSerializer(GeoFeatureModelSerializer):
 class ProjectInformationSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProjectInformation
+        fields = '__all__'
+
+class ProjectKarteringSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProjectKartering
         fields = '__all__'
 
 
@@ -78,6 +83,7 @@ class ProjectSerializer(serializers.ModelSerializer):
             'last_update_date',
             'project_information',
             'saved_object_ids',
+            'karteringar',
         ]
         read_only_fields = ('user', 'creation_date', 'last_update_date')
         extra_kwargs = {
@@ -110,9 +116,14 @@ class ProjectSerializer(serializers.ModelSerializer):
         """
 
         project_information_data = validated_data.pop('project_information', None)
+        karteringar_data = validated_data.pop('karteringar', [])
+        
         project = Project.objects.create(**validated_data)
         if project_information_data:
             ProjectInformation.objects.create(project=project, **project_information_data)
+
+        for kartering_data in karteringar_data:
+            ProjectKartering.objects.create(project=project, **kartering_data)
 
         # Extract GIS data from validated data
         polygon_data = validated_data.pop('polygon_data', [])
@@ -140,30 +151,26 @@ class ProjectSerializer(serializers.ModelSerializer):
         Returns:
             Project: The updated Project instance.
         """
-
         project_information_data = validated_data.pop('project_information', None)
-        # Update project instance fields...
+        karteringar_data = validated_data.pop('karteringar', None)
+        
         if project_information_data:
             ProjectInformation.objects.filter(project=instance).update(**project_information_data)
 
-        # Extract GIS data from validated data
-        polygon_data = validated_data.pop('polygon_data', None)
-        line_data = validated_data.pop('line_data', None)
-        point_data = validated_data.pop('point_data', None)
         # Update project instance fields
         for attr, value in validated_data.items():
             setattr(instance, attr, value)
         instance.save()
-        # Update or create related GIS data
-        # This is a simple example and might need to be adjusted based on your requirements
-        if polygon_data is not None:
-            for poly_data in polygon_data:
-                poly_id = poly_data.get('id', None)
-                if poly_id:
-                    PolygonData.objects.filter(id=poly_id).update(**poly_data)
+
+        # Update or create related ProjectKartering instances
+        if karteringar_data is not None:
+            for kartering_data in karteringar_data:
+                kartering_id = kartering_data.get('id', None)
+                if kartering_id:
+                    ProjectKartering.objects.filter(id=kartering_id).update(**kartering_data)
                 else:
-                    PolygonData.objects.create(project=instance, **poly_data)
-        # Repeat similar logic for line_data and point_data
+                    ProjectKartering.objects.create(project=instance, **kartering_data)
+
         return instance
 
     def delete(self, instance):

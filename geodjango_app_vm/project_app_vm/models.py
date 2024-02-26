@@ -110,6 +110,18 @@ class ProjectImage(models.Model):
         verbose_name = _("Project Image")
         verbose_name_plural = _("Project Images")
 
+class ProjectKartering(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, verbose_name=_("Project"), related_name="karteringar")
+    used_karteringar = models.CharField(max_length=255, verbose_name=_("Used Karteringar"))
+
+    def __str__(self):
+        return f"{self.project.project_name} - {self.kartering_types}"
+
+    class Meta:
+        verbose_name = _("Project Kartering")
+        verbose_name_plural = _("Project Karteringar")
+
+
 class GeoJSONFile (models.Model):
     file_name = models.CharField(max_length=255, blank=True, null=True)
     geojson_data = JSONField(blank=True, null=True)  # Field to store GeoJSON data
