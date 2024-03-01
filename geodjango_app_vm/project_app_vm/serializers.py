@@ -42,6 +42,7 @@ class ProjectKarteringSerializer(serializers.ModelSerializer):
 
 class ProjectSerializer(serializers.ModelSerializer):
     project_information = ProjectInformationSerializer(required=False)
+    karteringar = ProjectKarteringSerializer(many=True, read_only=True)
 
     """
     Serializer for the Project model.
@@ -101,7 +102,8 @@ class ProjectSerializer(serializers.ModelSerializer):
             'period_end': {'required': False},
             'version_start': {'required': False},
             'version_end': {'required': False},
-            'saved_object_ids': {'required': False}
+            'saved_object_ids': {'required': False},
+            'karteringar': {'required': False}
         }
 
     def create(self, validated_data):

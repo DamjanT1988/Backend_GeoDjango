@@ -189,4 +189,4 @@ class ProjectDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         # Prefetch related GIS data to optimize performance
-        return Project.objects.prefetch_related('polygon_data', 'line_data', 'point_data')
+        return Project.objects.prefetch_related('karteringar')
