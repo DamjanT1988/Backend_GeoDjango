@@ -38,9 +38,6 @@ urlpatterns = [
     #fetch projects
     path('api/projects/', ProjectListCreateView.as_view(), name='project-list'),
     path('api/projects/<int:pk>/', ProjectDetailView.as_view(), name='project-detail'),
-    #path('api/projects/<int:project_id>/add_polygon/', views.add_polygon_data, name='add_polygon_data'),
-    #path('api/projects/<int:project_id>/add_line/', views.add_line_data, name='add_line_data'),
-    #path('api/projects/<int:project_id>/add_point/', views.add_point_data, name='add_point_data'),
     #create files
     path('api/projects/get/<str:userID>/<str:projectID>/file', views.get_geojson, name='get_geojson'),
     path('api/projects/post/<str:userID>/<str:projectID>/file', views.save_geojson, name='save_geojson'),
