@@ -20,6 +20,7 @@ from datetime import timedelta
 import random
 
 """
+
 # Allow in production
 def check_request_origin(request):
     allowed_domain = 'https://www.yourwebappdomain.com'
