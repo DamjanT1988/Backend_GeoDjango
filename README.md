@@ -49,9 +49,3 @@ Följ dessa steg för att sätta upp backend på din lokala utvecklingsmiljö:
 
 ## Dokumentation
 Ytterligare dokumentation och API-specifikationer finns i projektrepot. Se även Django och GeoDjango-dokumentationen för mer detaljerad information om användning och konfiguration.
-
-## Bidra
-Bidrag till projektet är välkomna. Se `CONTRIBUTING.md` för riktlinjer om hur du kan bidra.
-
-## Licens
-Projektet är licensierat under MIT-licensen. Se filen [LICENSE](LICENSE) för fullständiga licensvillkor.
