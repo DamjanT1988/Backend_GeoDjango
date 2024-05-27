@@ -139,7 +139,7 @@ DATABASES = {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'SpatialDBdev2',
         'USER': 'postgres',
-        'PASSWORD': 'burnface741',
+        'PASSWORD': 'bu',
         'HOST': 'localhost',
         'PORT': '5432',
     }
